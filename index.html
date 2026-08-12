@@ -1,388 +1,1056 @@
-﻿<!DOCTYPE html>
-<!-- CSS StyleSheets -->
-<link href="/Content/CSS/root.css" rel="stylesheet">
+<!--
+  PENDIENTE ANTES DE PUBLICAR:
+  1. Revisar que los nombres de empresas (Bayer, Monsanto, RGA, Kiosite, Dedalord) coincidan exactamente con lo que mostrás en tu perfil de LinkedIn.
+  2. Si cambia el SLA, la duración de la llamada, o el alcance de servicios, actualizar en el diccionario I18N más abajo, en ambos idiomas (es / en).
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Auditoría de Costos AWS en 3 días hábiles | Santiago Villarreal</title>
+<meta id="page-desc" name="description" content="Auditoría de costos AWS con acceso de solo lectura. Informe con hallazgos priorizados por ahorro potencial y plan de acción en hasta 3 días hábiles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1220;
+    --surface: #121B2E;
+    --surface-2: #16213A;
+    --border: #24304A;
+    --text: #E8ECF1;
+    --text-muted: #8B96A8;
+    --mint: #6EE7B7;
+    --amber: #F5A524;
+    --mint-dim: rgba(110,231,183,0.12);
+    --amber-dim: rgba(245,165,36,0.12);
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --radius: 10px;
+    --max-w: 1080px;
+  }
 
-<!-- Libraries -->
-<script type="text/javascript" src="/Scripts/Libraries/jquery/jquery-2.2.4.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/angular/angular.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/angular/angular-ui-router.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/bootstrap-select/bootstrap-select.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/bootstrap-toggle/bootstrap-toggle.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/bootstrap-wysihtml5/wysihtml5-0.3.0.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/bootstrap/ui-bootstrap-tpls-0.14.3.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jquery-gridster/jquery.collision.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jquery-gridster/jquery.coords.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jquery-gridster/jquery.draggable.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jquery-gridster/utils.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jquery-gridster/jquery.gridster.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jquery.globalize/globalize.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/dxDataGrid/jszip.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/dxDataGrid/dx.webappjs.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/tools.flashembed-1.0.4.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/FABridge.js"></script>
-<script type="text/javascript" src='/Scripts/Libraries/textAngular/textAngular-rangy.min.js'></script>
-<script type="text/javascript" src='/Scripts/Libraries/textAngular/textAngular-sanitize.min.js'></script>
-<script type="text/javascript" src='/Scripts/Libraries/textAngular/textAngular.min.js'></script>
-<script type="text/javascript" src="/Scripts/Libraries/materialize/materialize.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/Minicolors/angular-minicolors.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/Minicolors/jquery.minicolors.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/moment/moment.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/moment/moment-tz.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/fullcalendar/fullcalendar.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/sc-date-time/sc-date-time.js"></script>
-<script type="text/javascript" src="/Scripts/Services/opentok.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/angular-strap/angular-strap.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/angular-strap/angular-strap.tpl.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/acute-select/acute.select.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/angular/angular-ui.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jchartfx/js/jchartfx.system.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jchartfx/js/jchartfx.coreBasic.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jchartfx/js/jchartfx.coreVector.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/jchartfx/js/jchartfx.advanced.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/clipboard.min.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/VideoJS/video.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/RecorderRTC/RecordRTC.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/RecorderRTC/gumadapter.js"></script>
-<script type="text/javascript" src="/Scripts/Libraries/download.js/download.js"></script>
+  *{ margin:0; padding:0; box-sizing:border-box; }
 
-<script src="/Scripts/Services/bugsnag.v3.min.js" data-apikey="45c5a849e602af9ba7ba0e9c8b261c1a"></script>
-<script type="text/javascript" src="/Scripts/Libraries/angular-bugsnag/angular-bugsnag.js"></SCRIPT>
+  html{ scroll-behavior: smooth; }
 
-<!-- Controllers -->
-<script type="text/javascript" src="/Scripts/App.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/DashboardController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/LoginController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/ModalController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/ContentController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/ThriveController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/NotificationsController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/SettingsController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/SearchController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/EmailTemplateController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/CandidateDashboardController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/PrivacyAndTermsController.js"></script>
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-<script type="text/javascript" src="/Scripts/Controllers/Hire/InterviewTemplateController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/ReviewerController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/ExternalReviewController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/ExternalLiveController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/ICSController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/HireController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/CandidatesController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/LiveController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/InterviewController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/ReportController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/HireShareLinkController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/ExternalHireShareLinkController.js"></script>
-<script type="text/javascript" src="/Scripts/Controllers/Hire/PreviewController.js"></script>
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(110,231,183,0.06), transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(245,165,36,0.05), transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-<!-- Services -->
-<script type="text/javascript" src="/Scripts/Services/DashboardService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/LoginService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/ContentService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/NotificationsService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/SettingsService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/ThriveService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/SearchService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/EmailTemplateService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/FileUploadService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/CandidateDashboardService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/PrivacyAndTermsService.js"></script>
+  a{ color: var(--mint); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
 
-<!--Hire Services-->
-<script type="text/javascript" src="/Scripts/Services/Hire/LiveService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/HireService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/CandidatesService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/InterviewService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/ReviewerService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/ExternalReviewService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/ExternalLiveService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/ICSService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/InterviewTemplateService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/ReportService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/HireShareLinkService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/ExternalHireShareLinkService.js"></script>
-<script type="text/javascript" src="/Scripts/Services/Hire/PreviewService.js"></script>
+  :focus-visible{
+    outline: 2px solid var(--mint);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 
-<!-- Directives-->
-<script type="text/javascript" src="/Scripts/Directives/accountList.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/userList.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Thrive/Settings/systemSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Thrive/Settings/generalSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Thrive/Settings/securitySettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Thrive/Settings/brandingSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/widgetButton.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/langaugeOptionsDropdown.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/onRepeatComplete.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/recorderDirective.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/listClickout.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/accountDropdown.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/tableTags.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/searchTags.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/addTags.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/listTags.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/editTags.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/backgroundImage.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/fileModel.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/sidePanelClickout.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/embedSrc.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/fileType.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/resourceType.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/ownerType.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/userRoles.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/appStoreImage.js"></script>
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
 
-<!-- Hire Directives-->
-<script type="text/javascript" src="/Scripts/Directives/Hire/Prerecorded/candidateExperience.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Prerecorded/candidateRtcExperience.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Review/reviewerExperience.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Live/liveExperience.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Share/sharelinkExperience.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Settings/moduleGeneralSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Settings/moduleDefaultSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Settings/moduleProvisioningSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Settings/moduleBrandingSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Settings/moduleContractSettings.js"></script>
-<script type="text/javascript" src="/Scripts/Directives/Hire/Settings/moduleNoneActive.js"></script>
+  /* NAV */
+  header.nav{
+    border-bottom: 1px solid var(--border);
+    background: rgba(11,18,32,0.85);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+  .brand{
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .brand span{ color: var(--mint); }
+  .nav-right{ display:flex; align-items:center; gap: 14px; }
+  .nav-cta{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+  }
+  .nav-cta:hover{ border-color: var(--mint); text-decoration:none; background: var(--mint-dim); }
+  .lang-switch{ display:flex; gap: 6px; }
+  .lang-btn{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 6px 9px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  .lang-btn:hover{ color: var(--text); }
+  .lang-btn.active{ color: var(--mint); border-color: var(--mint); background: var(--mint-dim); }
 
-<!-- Other-->
-<script type="text/javascript" src="/Scripts/Recorder.js"></script>
-<script type="text/javascript" src="/Scripts/Functions.js"></script>
-<script type="text/javascript" src="/Scripts/AudioRecorder/recorderjs/recorder.js"></script>
-<script type="text/javascript" src="/Scripts/AudioRecorder/main.js"></script>
-<script type="text/javascript" src="Environment.js"></script>
+  /* HERO */
+  .hero{
+    padding: 88px 0 64px;
+  }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--mint);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 8px; height: 8px;
+    background: var(--mint);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--mint-dim);
+  }
+  h1{
+    font-family: var(--font-mono);
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    font-weight: 600;
+    max-width: 820px;
+    letter-spacing: -0.01em;
+  }
+  h1 .hl{ color: var(--mint); }
+  .hero-sub{
+    margin-top: 22px;
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+  }
+  .hero-ctas{
+    margin-top: 34px;
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 24px;
+    border-radius: 8px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary{
+    background: var(--mint);
+    color: #082017;
+  }
+  .btn-primary:hover{ transform: translateY(-1px); text-decoration:none; }
+  .btn-secondary{
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-secondary:hover{ border-color: var(--text-muted); text-decoration:none; }
 
-<script type="text/javascript">
-	(function()
-	{
-		try
-		{
-			if (environment == "PROD")
-				Bugsnag.releaseStage = "production";
-			else if (environment = "BETA")
-				Bugsnag.releaseStage = "release";
-			else
-				Bugsnag.releaseStage = "dev";
-		} catch (e){ }
-	})();
+  .access-note{
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .access-note strong{ color: var(--text); }
+
+  /* TERMINAL */
+  .terminal{
+    margin-top: 56px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: 640px;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
+  }
+  .terminal-bar{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .dot{ width:10px; height:10px; border-radius:50%; }
+  .dot.r{ background:#F87171; }
+  .dot.y{ background:#FBBF24; }
+  .dot.g{ background:#6EE7B7; }
+  .terminal-title{
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .terminal-body{
+    padding: 20px 22px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: #C7D0DE;
+  }
+  .terminal-body .line{ margin-bottom: 8px; opacity: 0; animation: reveal 0.4s ease forwards; }
+  .terminal-body .prompt{ color: var(--mint); }
+  .terminal-body .muted{ color: var(--text-muted); }
+  .terminal-body .flag{ color: var(--amber); }
+  .terminal-body .l1{ animation-delay: 0.1s; }
+  .terminal-body .l2{ animation-delay: 0.5s; }
+  .terminal-body .l3{ animation-delay: 1.1s; }
+  .terminal-body .l4{ animation-delay: 1.7s; }
+  .terminal-body .l5{ animation-delay: 2.3s; }
+  .terminal-body .l6{ animation-delay: 2.9s; }
+  .terminal-body .l7{ animation-delay: 3.5s; }
+
+  @keyframes reveal{ to{ opacity: 1; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .terminal-body .line{ opacity: 1; animation: none; }
+    html{ scroll-behavior: auto; }
+  }
+
+  /* SECTIONS */
+  section{ padding: 72px 0; border-top: 1px solid var(--border); }
+  .section-head{ max-width: 640px; margin-bottom: 44px; }
+  .section-label{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--mint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  h2{
+    font-family: var(--font-mono);
+    font-size: clamp(24px, 3.2vw, 32px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .section-sub{ margin-top: 12px; color: var(--text-muted); font-size: 16px; }
+
+  /* PROBLEMA */
+  .problem-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+  }
+  .problem-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .problem-card .num{
+    font-family: var(--font-mono);
+    color: var(--amber);
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .problem-card p{ color: var(--text-muted); font-size: 15px; }
+  .problem-card strong{ color: var(--text); display:block; margin-bottom: 8px; font-size: 16px; }
+
+  /* STEPS */
+  .steps{ display:flex; flex-direction:column; gap: 0; }
+  .step{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child{ border-bottom:none; }
+  .step-num{
+    font-family: var(--font-mono);
+    font-size: 22px;
+    color: var(--mint);
+    font-weight: 600;
+  }
+  .step-title{ font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .step-desc{ color: var(--text-muted); font-size: 15px; max-width: 620px; }
+  .step-meta{
+    display:inline-block;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--amber);
+    background: var(--amber-dim);
+    padding: 4px 10px;
+    border-radius: 5px;
+  }
+
+  /* LEDGER (incluye / no incluye) */
+  .ledger{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .ledger-col{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .ledger-col h3{
+    font-family: var(--font-mono);
+    font-size: 15px;
+    margin-bottom: 18px;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .ledger-col.yes h3{ color: var(--mint); }
+  .ledger-col.no h3{ color: var(--text-muted); }
+  .ledger-item{
+    display:flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14.5px;
+    color: var(--text);
+  }
+  .ledger-item:last-child{ border-bottom: none; }
+  .ledger-item .mark{ font-family: var(--font-mono); flex-shrink:0; }
+  .yes .mark{ color: var(--mint); }
+  .no .mark{ color: var(--text-muted); }
+  .no .ledger-item{ color: var(--text-muted); }
+
+  /* TRUST */
+  .trust-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .trust-bio p{ margin-bottom: 16px; color: var(--text-muted); font-size: 15.5px; }
+  .trust-bio strong{ color: var(--text); }
+  .honesty-box{
+    margin-top: 24px;
+    padding: 16px 18px;
+    border-left: 2px solid var(--amber);
+    background: var(--amber-dim);
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .tags{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 20px; }
+  .tag{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+
+  /* Access diagram (signature element) */
+  .access-diagram{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+  }
+  .access-diagram .diagram-title{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 22px;
+  }
+  .flow{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .flow-node{
+    flex: 1;
+    text-align:center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 14px 6px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-2);
+    color: var(--text);
+  }
+  .flow-node.mid{ border-color: var(--mint); color: var(--mint); }
+  .flow-arrow{ color: var(--text-muted); font-family: var(--font-mono); font-size: 16px; }
+  .flow-caption{
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* PRICE */
+  .price-card{
+    max-width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--mint);
+    border-radius: var(--radius);
+    padding: 36px;
+    position: relative;
+  }
+  .price-card::before{
+    content: attr(data-badge);
+    position: absolute;
+    top: -12px;
+    left: 32px;
+    background: var(--mint);
+    color: #082017;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+  .price-amount{
+    font-family: var(--font-mono);
+    font-size: 44px;
+    font-weight: 700;
+    margin-top: 12px;
+    display:flex;
+    align-items:baseline;
+    gap: 10px;
+  }
+  .price-old{
+    font-size: 20px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+  .price-desc{ color: var(--text-muted); font-size: 14.5px; margin-top: 8px; }
+  .price-list{ margin-top: 22px; display:flex; flex-direction:column; gap: 10px; }
+  .price-list li{ list-style:none; display:flex; gap:10px; font-size: 14.5px; color: var(--text); }
+  .price-list .mark{ color: var(--mint); font-family: var(--font-mono); }
+  .price-scope{
+    margin-top: 22px;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 14px;
+    background: var(--surface-2);
+    border-radius: 8px;
+  }
+  .price-card .btn{ margin-top: 24px; width: 100%; justify-content:center; }
+
+  /* FAQ */
+  .faq-item{
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:first-child{ border-top: 1px solid var(--border); }
+  .faq-q{
+    width: 100%;
+    text-align:left;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 20px 0;
+    cursor: pointer;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    gap: 16px;
+  }
+  .faq-q .icon{
+    font-family: var(--font-mono);
+    color: var(--mint);
+    font-size: 18px;
+    transition: transform 0.2s ease;
+    flex-shrink:0;
+  }
+  .faq-item.open .faq-q .icon{ transform: rotate(45deg); }
+  .faq-a{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+  .faq-a-inner{ padding-bottom: 20px; max-width: 660px; }
+  .faq-item.open .faq-a{ max-height: 260px; }
+
+  /* FOOTER / CTA FINAL */
+  .final-cta{
+    text-align:center;
+    padding: 88px 0;
+  }
+  .final-cta h2{ max-width: 580px; margin: 0 auto 16px; }
+  .final-cta .section-sub{ margin: 0 auto 32px; }
+  .final-ctas{ display:flex; gap: 14px; justify-content:center; flex-wrap:wrap; }
+
+  footer{
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align:center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 860px){
+    .problem-grid{ grid-template-columns: 1fr; }
+    .ledger{ grid-template-columns: 1fr; }
+    .trust-grid{ grid-template-columns: 1fr; }
+    .flow{ flex-direction: column; }
+    .flow-arrow{ transform: rotate(90deg); }
+    .step{ grid-template-columns: 40px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">// <span>audit</span>.aws</div>
+    <div class="nav-right">
+      <a class="nav-cta" href="#precio" data-i18n="nav.viewPrice">Ver precio</a>
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang-btn="es">ES</button>
+        <button class="lang-btn" data-lang-btn="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="hero.eyebrow">Auditoría de costos AWS &middot; entrega en hasta 3 días hábiles</div>
+      <h1 data-i18n="hero.title">Tu cuenta de AWS tiene gasto que <span class="hl">nadie está mirando</span>.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">
+        Reviso tu cuenta con acceso de solo lectura, desde EC2 y contenedores hasta redes y caching, y te entrego un informe con hallazgos priorizados por ahorro estimado en dólares, más un plan de acción concreto. Sin access keys, sin promesas de porcentaje inventadas.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary book-link" href="https://calendar.app.google/SvMsLTXnQpgSC8mu9" target="_blank" rel="noopener" data-i18n="hero.ctaBook">Agendar la llamada</a>
+        <a class="btn btn-secondary" href="mailto:santiago.villarreal.js@gmail.com?subject=Auditoría de costos AWS" data-i18n="hero.ctaEmail">Escribime un mail</a>
+      </div>
+      <div class="access-note" data-i18n="hero.access"><strong>Acceso:</strong> IAM role cross-account de solo lectura. Revocable en cualquier momento.</div>
+
+      <div class="terminal" role="img" aria-label="Terminal mostrando el proceso de auditoría">
+        <div class="terminal-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="terminal-title" data-i18n="term.title">audit.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="line l1"><span class="prompt">$ audit --account=prod --access=read-only</span></div>
+          <div class="line l2 muted" data-i18n="term.l2">&gt; Conectando via IAM role cross-account...</div>
+          <div class="line l3 muted" data-i18n="term.l3">&gt; Analizando EC2, ECS/Fargate, RDS, Lambda...</div>
+          <div class="line l4 muted" data-i18n="term.l4">&gt; Revisando VPC, VPC Endpoints, ElastiCache, OpenSearch...</div>
+          <div class="line l5 flag" data-i18n="term.l5">&gt; 3 categorías con desperdicio detectado</div>
+          <div class="line l6 muted" data-i18n="term.l6">&gt; Revisando cobertura de RIs / Savings Plans...</div>
+          <div class="line l7 prompt" data-i18n="term.l7">&gt; Informe listo en hasta 3 días hábiles.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problema">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-label" data-i18n="problem.label">El problema</div>
+        <h2 data-i18n="problem.title">Cost Explorer te muestra números. No te dice qué hacer con ellos.</h2>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="num">01</div>
+          <strong data-i18n="problem.c1.title">Creciste más rápido que tu control de costos</strong>
+          <p data-i18n="problem.c1.desc">Escalaste infraestructura para sostener el producto. Nadie tuvo tiempo de volver a mirar qué quedó sobreprovisionado en el camino.</p>
+        </div>
+        <div class="problem-card">
+          <div class="num">02</div>
+          <strong data-i18n="problem.c2.title">No tenés un rol de FinOps dedicado</strong>
+          <p data-i18n="problem.c2.desc">Tu equipo de DevOps o Platform está enfocado en que todo funcione. Optimizar costos compite por tiempo con todo lo demás, y pierde.</p>
+        </div>
+        <div class="problem-card">
+          <div class="num">03</div>
+          <strong data-i18n="problem.c3.title">Contratar una auditoría grande no tiene sentido todavía</strong>
+          <p data-i18n="problem.c3.desc">Las consultoras grandes cotizan semanas de trabajo y miles de dólares para algo que en tu escala se puede resolver más rápido y más chico.</p>
+        </div>
+        <div class="problem-card">
+          <div class="num">04</div>
+          <strong data-i18n="problem.c4.title">Todo lo demás sí tiene una alarma. Los costos no</strong>
+          <p data-i18n="problem.c4.desc">Armaste el workload, lo llevaste a prod, sumaste algo de monitoring y alerting. Si escaló, agregaste observability (Datadog, PagerDuty). Compliance y seguridad entraron porque hubo una auditoría o un incidente de por medio. Los costos no tienen ese disparador, así que siempre quedan últimos en la lista.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-label" data-i18n="steps.label">Cómo funciona</div>
+        <h2 data-i18n="steps.title">Tres pasos, sin que tu equipo tenga que meterse de lleno.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title" data-i18n="step1.title">Creás el IAM role de solo lectura</div>
+            <div class="step-desc" data-i18n="step1.desc">Te paso el template de CloudFormation o Terraform. Alguien de tu equipo lo aplica en 15-30 minutos. Nunca te pido access keys.</div>
+            <span class="step-meta" data-i18n="step1.meta">~15-30 min de tu lado</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title" data-i18n="step2.title">Reviso la cuenta completa</div>
+            <div class="step-desc" data-i18n="step2.desc">EC2, ECS/Fargate, EBS, S3, RDS, Lambda, redes (VPC y VPC Endpoints), ElastiCache (Redis/Valkey), OpenSearch, cobertura de Reserved Instances y Savings Plans, costos de CloudWatch y CloudTrail (incluyendo lo que sus métricas dicen sobre uso real), y patrones de data transfer. Trabajo sobre datos reales, no sobre supuestos.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title" data-i18n="step3.title">Recibís el informe en hasta 3 días hábiles</div>
+            <div class="step-desc" data-i18n="step3.desc">Hallazgos ordenados por impacto estimado en USD/mes, no por cantidad de items. Cada hallazgo viene con el paso concreto para resolverlo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="incluye">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-label" data-i18n="inc.label">Alcance</div>
+        <h2 data-i18n="inc.title">Qué incluye la auditoría y qué queda para después.</h2>
+      </div>
+      <div class="ledger">
+        <div class="ledger-col yes">
+          <h3 data-i18n="inc.yesTitle">&gt; Incluye</h3>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes1">Análisis vía IAM role de solo lectura</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes2">EC2, ECS/Fargate, EBS, S3, RDS, Lambda</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes3">Networking: VPC y VPC Endpoints</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes4">ElastiCache (Redis/Valkey) y OpenSearch</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes5">Costos de CloudWatch y CloudTrail, incluyendo métricas de uso</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes6">Cobertura de Reserved Instances / Savings Plans</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes7">Revisión de patrones de data transfer</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes8">Informe con hallazgos priorizados por USD/mes estimado</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes9">Plan de acción concreto por hallazgo</span></div>
+        </div>
+        <div class="ledger-col no">
+          <h3 data-i18n="inc.noTitle">&gt; No incluye</h3>
+          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no1">Ejecución de los cambios (segunda etapa, cotizada aparte)</span></div>
+          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no2">Revisión de arquitectura de aplicación o performance</span></div>
+          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no3">Garantía de ahorro en porcentaje</span></div>
+          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no4">Monitoreo continuo (eso sería un servicio recurrente aparte)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quien-soy">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-label" data-i18n="trust.label">Por qué confiar en esto</div>
+        <h2 data-i18n="trust.title">Sin testimonios inventados. Esto es lo que hay.</h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-bio">
+          <p data-i18n="trust.p1">Trabajo como <strong>DevOps, CloudOps y CloudSecOps Engineer</strong>, además de desarrollo full stack. Uso AWS de forma práctica todos los días: EC2, ECS/Fargate, S3, RDS, Lambda, VPC, ElastiCache, OpenSearch, Cost Explorer y Trusted Advisor, y automatizo infraestructura con Terraform y pipelines de CI/CD.</p>
+          <p data-i18n="trust.p2">A lo largo de distintos proyectos trabajé con infraestructura AWS en empresas como Bayer, Monsanto, RGA, Kiosite y Dedalord, en distintos roles: como parte de equipos internos y como consultor externo. Podés ver el detalle de cada proyecto en <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" target="_blank" rel="noopener">mi LinkedIn</a>.</p>
+          <p data-i18n="trust.p3">La seguridad no es un agregado en lo que hago. Por eso esta auditoría arranca con acceso de solo lectura vía IAM role, nunca con access keys ni credenciales compartidas.</p>
+          <div class="honesty-box" data-i18n="trust.honesty">
+            Todavía no tengo casos públicos de este servicio puntual, porque es nuevo. Prefiero decir esto en vez de mostrarte un testimonio inventado. Los primeros clientes van a definir el precio de lanzamiento y, con su permiso, los primeros casos reales que voy a poder mostrar.
+          </div>
+          <div class="tags">
+            <span class="tag">Terraform</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag" data-i18n="tag.security">IAM / Seguridad Cloud</span>
+            <span class="tag">Cost Explorer</span>
+            <span class="tag">ECS / Fargate</span>
+            <span class="tag" data-i18n="tag.networking">VPC y Networking</span>
+            <span class="tag">ElastiCache</span>
+            <span class="tag">OpenSearch</span>
+          </div>
+        </div>
+        <div class="access-diagram">
+          <div class="diagram-title" data-i18n="diagram.title">Modelo de acceso</div>
+          <div class="flow">
+            <div class="flow-node" data-i18n="diagram.node1">Tu cuenta<br>AWS</div>
+            <span class="flow-arrow">&rarr;</span>
+            <div class="flow-node mid" data-i18n="diagram.node2">IAM Role<br>solo lectura</div>
+            <span class="flow-arrow">&rarr;</span>
+            <div class="flow-node" data-i18n="diagram.node3">Informe<br>de auditoría</div>
+          </div>
+          <p class="flow-caption" data-i18n="diagram.caption">Sin access keys. Sin escritura. El role se revoca cuando querés, y te paso las instrucciones para hacerlo en un minuto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="precio">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-label" data-i18n="price.label">Precio</div>
+        <h2 data-i18n="price.title">Precio fijo. Sin sorpresas en la factura del auditor.</h2>
+      </div>
+      <div class="price-card" data-badge="PRECIO DE LANZAMIENTO">
+        <div class="price-amount">USD 900 <span class="price-old">USD 1.500</span></div>
+        <div class="price-desc" data-i18n="price.desc">Precio de lanzamiento, válido para los primeros clientes de este servicio.</div>
+        <ul class="price-list">
+          <li><span class="mark">+</span> <span data-i18n="price.li1">Informe completo en hasta 3 días hábiles desde que confirmamos el acceso</span></li>
+          <li><span class="mark">+</span> <span data-i18n="price.li2">Llamada de 30 min antes de arrancar, para entender tu cuenta y confirmar que entra en el alcance</span></li>
+          <li><span class="mark">+</span> <span data-i18n="price.li3">Una ronda de preguntas por escrito sobre el informe, incluida</span></li>
+        </ul>
+        <div class="price-scope" data-i18n="price.scope">
+          Este precio aplica a 1 cuenta AWS (o hasta 3 cuentas linkeadas) con gasto de referencia de hasta USD 15.000/mes. Cuentas más grandes, o con arquitecturas muy distribuidas (múltiples clusters ECS, múltiples VPCs), se cotizan aparte, sin forzar el precio fijo.
+        </div>
+        <a class="btn btn-primary book-link" href="https://calendar.app.google/SvMsLTXnQpgSC8mu9" target="_blank" rel="noopener" data-i18n="price.cta">Agendar la llamada inicial</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-label" data-i18n="faq.label">Preguntas frecuentes</div>
+        <h2 data-i18n="faq.title">Lo que probablemente estás pensando ahora.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.q1">¿Necesito darte mis access keys de AWS?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a1">No, nunca. Trabajo con un IAM role cross-account de solo lectura que vos creás y controlás. Te paso el template listo para aplicar. Podés revocarlo en cualquier momento.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.q2">¿Garantizás un porcentaje de ahorro?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">No. Te muestro hallazgos reales con impacto estimado en dólares por mes, calculado sobre tu cuenta puntual. No uso una cifra de marketing genérica tipo "ahorrá 30%" porque no la puedo respaldar sin haber visto tu caso.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.q3">¿Qué pasa si mi cuenta es más grande o más compleja que el alcance estándar?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">En la llamada inicial lo vemos. Si tu caso excede el alcance (más cuentas, gasto mensual mayor, arquitectura muy distribuida), te paso una cotización ajustada antes de arrancar. Nunca se fuerza el precio fijo sobre un caso que no entra.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.q4">¿La auditoría incluye implementar los cambios?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">No. Este servicio entrega el diagnóstico y el plan de acción. La ejecución de los cambios es una segunda etapa opcional, que se cotiza según el alcance de lo que haya que hacer.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.q5">¿Cómo revoco el acceso cuando termina la auditoría?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">Eliminás el IAM role o le sacás el trust policy que lo conecta con mi cuenta. Te dejo esas instrucciones junto con el informe final, toma menos de un minuto.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.q6">¿Por qué hasta 3 días si esto se supone que es rápido?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">Porque prefiero entregar un informe bien hecho antes que apurar el análisis para cumplir un plazo demasiado ajustado. Comparado con auditorías de consultoras grandes, que suelen tardar entre 2 y 6 semanas, 3 días hábiles sigue siendo rápido.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2 data-i18n="final.title">¿Tu cuenta AWS entra en el alcance? Escribime y lo vemos en 30 minutos.</h2>
+      <p class="section-sub" data-i18n="final.sub">Sin compromiso. Si no es un buen fit, te lo digo en la primera llamada.</p>
+      <div class="final-ctas">
+        <a class="btn btn-primary book-link" href="https://calendar.app.google/SvMsLTXnQpgSC8mu9" target="_blank" rel="noopener" data-i18n="hero.ctaBook">Agendar la llamada</a>
+        <a class="btn btn-secondary" href="mailto:santiago.villarreal.js@gmail.com?subject=Auditoría de costos AWS" data-i18n="hero.ctaEmail">Escribime un mail</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Santiago Villarreal &middot; DevOps / CloudOps / CloudSecOps Engineer &middot; <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" target="_blank" rel="noopener">LinkedIn</a>
+</footer>
+
+<script>
+  var I18N = {
+    es: {
+      "nav.viewPrice": "Ver precio",
+      "hero.eyebrow": "Auditoría de costos AWS &middot; entrega en hasta 3 días hábiles",
+      "hero.title": 'Tu cuenta de AWS tiene gasto que <span class="hl">nadie está mirando</span>.',
+      "hero.sub": "Reviso tu cuenta con acceso de solo lectura, desde EC2 y contenedores hasta redes y caching, y te entrego un informe con hallazgos priorizados por ahorro estimado en dólares, más un plan de acción concreto. Sin access keys, sin promesas de porcentaje inventadas.",
+      "hero.ctaBook": "Agendar la llamada",
+      "hero.ctaEmail": "Escribime un mail",
+      "hero.ctaLinkedin": "Contactame por LinkedIn",
+      "hero.access": "<strong>Acceso:</strong> IAM role cross-account de solo lectura. Revocable en cualquier momento.",
+      "term.title": "audit.sh",
+      "term.l2": "&gt; Conectando via IAM role cross-account...",
+      "term.l3": "&gt; Analizando EC2, ECS/Fargate, RDS, Lambda...",
+      "term.l4": "&gt; Revisando VPC, VPC Endpoints, ElastiCache, OpenSearch...",
+      "term.l5": "&gt; 3 categorías con desperdicio detectado",
+      "term.l6": "&gt; Revisando cobertura de RIs / Savings Plans...",
+      "term.l7": "&gt; Informe listo en hasta 3 días hábiles.",
+      "problem.label": "El problema",
+      "problem.title": "Cost Explorer te muestra números. No te dice qué hacer con ellos.",
+      "problem.c1.title": "Creciste más rápido que tu control de costos",
+      "problem.c1.desc": "Escalaste infraestructura para sostener el producto. Nadie tuvo tiempo de volver a mirar qué quedó sobreprovisionado en el camino.",
+      "problem.c2.title": "No tenés un rol de FinOps dedicado",
+      "problem.c2.desc": "Tu equipo de DevOps o Platform está enfocado en que todo funcione. Optimizar costos compite por tiempo con todo lo demás, y pierde.",
+      "problem.c3.title": "Contratar una auditoría grande no tiene sentido todavía",
+      "problem.c3.desc": "Las consultoras grandes cotizan semanas de trabajo y miles de dólares para algo que en tu escala se puede resolver más rápido y más chico.",
+      "problem.c4.title": "Todo lo demás sí tiene una alarma. Los costos no",
+      "problem.c4.desc": "Armaste el workload, lo llevaste a prod, sumaste algo de monitoring y alerting. Si escaló, agregaste observability (Datadog, PagerDuty). Compliance y seguridad entraron porque hubo una auditoría o un incidente de por medio. Los costos no tienen ese disparador, así que siempre quedan últimos en la lista.",
+      "steps.label": "Cómo funciona",
+      "steps.title": "Tres pasos, sin que tu equipo tenga que meterse de lleno.",
+      "step1.title": "Creás el IAM role de solo lectura",
+      "step1.desc": "Te paso el template de CloudFormation o Terraform. Alguien de tu equipo lo aplica en 15-30 minutos. Nunca te pido access keys.",
+      "step1.meta": "~15-30 min de tu lado",
+      "step2.title": "Reviso la cuenta completa",
+      "step2.desc": "EC2, ECS/Fargate, EBS, S3, RDS, Lambda, redes (VPC y VPC Endpoints), ElastiCache (Redis/Valkey), OpenSearch, cobertura de Reserved Instances y Savings Plans, costos de CloudWatch y CloudTrail (incluyendo lo que sus métricas dicen sobre uso real), y patrones de data transfer. Trabajo sobre datos reales, no sobre supuestos.",
+      "step3.title": "Recibís el informe en hasta 3 días hábiles",
+      "step3.desc": "Hallazgos ordenados por impacto estimado en USD/mes, no por cantidad de items. Cada hallazgo viene con el paso concreto para resolverlo.",
+      "inc.label": "Alcance",
+      "inc.title": "Qué incluye la auditoría y qué queda para después.",
+      "inc.yesTitle": "&gt; Incluye",
+      "inc.yes1": "Análisis vía IAM role de solo lectura",
+      "inc.yes2": "EC2, ECS/Fargate, EBS, S3, RDS, Lambda",
+      "inc.yes3": "Networking: VPC y VPC Endpoints",
+      "inc.yes4": "ElastiCache (Redis/Valkey) y OpenSearch",
+      "inc.yes5": "Costos de CloudWatch y CloudTrail, incluyendo métricas de uso",
+      "inc.yes6": "Cobertura de Reserved Instances / Savings Plans",
+      "inc.yes7": "Revisión de patrones de data transfer",
+      "inc.yes8": "Informe con hallazgos priorizados por USD/mes estimado",
+      "inc.yes9": "Plan de acción concreto por hallazgo",
+      "inc.noTitle": "&gt; No incluye",
+      "inc.no1": "Ejecución de los cambios (segunda etapa, cotizada aparte)",
+      "inc.no2": "Revisión de arquitectura de aplicación o performance",
+      "inc.no3": "Garantía de ahorro en porcentaje",
+      "inc.no4": "Monitoreo continuo (eso sería un servicio recurrente aparte)",
+      "trust.label": "Por qué confiar en esto",
+      "trust.title": "Sin testimonios inventados. Esto es lo que hay.",
+      "trust.p1": 'Trabajo como <strong>DevOps, CloudOps y CloudSecOps Engineer</strong>, además de desarrollo full stack. Uso AWS de forma práctica todos los días: EC2, ECS/Fargate, S3, RDS, Lambda, VPC, ElastiCache, OpenSearch, Cost Explorer y Trusted Advisor, y automatizo infraestructura con Terraform y pipelines de CI/CD.',
+      "trust.p2": 'A lo largo de distintos proyectos trabajé con infraestructura AWS en empresas como Bayer, Monsanto, RGA, Kiosite y Dedalord, en distintos roles: como parte de equipos internos y como consultor externo. Podés ver el detalle de cada proyecto en <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" target="_blank" rel="noopener">mi LinkedIn</a>.',
+      "trust.p3": "La seguridad no es un agregado en lo que hago. Por eso esta auditoría arranca con acceso de solo lectura vía IAM role, nunca con access keys ni credenciales compartidas.",
+      "trust.honesty": "Todavía no tengo casos públicos de este servicio puntual, porque es nuevo. Prefiero decir esto en vez de mostrarte un testimonio inventado. Los primeros clientes van a definir el precio de lanzamiento y, con su permiso, los primeros casos reales que voy a poder mostrar.",
+      "tag.security": "IAM / Seguridad Cloud",
+      "tag.networking": "VPC y Networking",
+      "diagram.title": "Modelo de acceso",
+      "diagram.node1": "Tu cuenta<br>AWS",
+      "diagram.node2": "IAM Role<br>solo lectura",
+      "diagram.node3": "Informe<br>de auditoría",
+      "diagram.caption": "Sin access keys. Sin escritura. El role se revoca cuando querés, y te paso las instrucciones para hacerlo en un minuto.",
+      "price.label": "Precio",
+      "price.title": "Precio fijo. Sin sorpresas en la factura del auditor.",
+      "price.badge": "PRECIO DE LANZAMIENTO",
+      "price.desc": "Precio de lanzamiento, válido para los primeros clientes de este servicio.",
+      "price.li1": "Informe completo en hasta 3 días hábiles desde que confirmamos el acceso",
+      "price.li2": "Llamada de 30 min antes de arrancar, para entender tu cuenta y confirmar que entra en el alcance",
+      "price.li3": "Una ronda de preguntas por escrito sobre el informe, incluida",
+      "price.scope": "Este precio aplica a 1 cuenta AWS (o hasta 3 cuentas linkeadas) con gasto de referencia de hasta USD 15.000/mes. Cuentas más grandes, o con arquitecturas muy distribuidas (múltiples clusters ECS, múltiples VPCs), se cotizan aparte, sin forzar el precio fijo.",
+      "price.cta": "Agendar la llamada inicial",
+      "faq.label": "Preguntas frecuentes",
+      "faq.title": "Lo que probablemente estás pensando ahora.",
+      "faq.q1": "¿Necesito darte mis access keys de AWS?",
+      "faq.a1": "No, nunca. Trabajo con un IAM role cross-account de solo lectura que vos creás y controlás. Te paso el template listo para aplicar. Podés revocarlo en cualquier momento.",
+      "faq.q2": "¿Garantizás un porcentaje de ahorro?",
+      "faq.a2": 'No. Te muestro hallazgos reales con impacto estimado en dólares por mes, calculado sobre tu cuenta puntual. No uso una cifra de marketing genérica tipo "ahorrá 30%" porque no la puedo respaldar sin haber visto tu caso.',
+      "faq.q3": "¿Qué pasa si mi cuenta es más grande o más compleja que el alcance estándar?",
+      "faq.a3": "En la llamada inicial lo vemos. Si tu caso excede el alcance (más cuentas, gasto mensual mayor, arquitectura muy distribuida), te paso una cotización ajustada antes de arrancar. Nunca se fuerza el precio fijo sobre un caso que no entra.",
+      "faq.q4": "¿La auditoría incluye implementar los cambios?",
+      "faq.a4": "No. Este servicio entrega el diagnóstico y el plan de acción. La ejecución de los cambios es una segunda etapa opcional, que se cotiza según el alcance de lo que haya que hacer.",
+      "faq.q5": "¿Cómo revoco el acceso cuando termina la auditoría?",
+      "faq.a5": "Eliminás el IAM role o le sacás el trust policy que lo conecta con mi cuenta. Te dejo esas instrucciones junto con el informe final, toma menos de un minuto.",
+      "faq.q6": "¿Por qué hasta 3 días si esto se supone que es rápido?",
+      "faq.a6": "Porque prefiero entregar un informe bien hecho antes que apurar el análisis para cumplir un plazo demasiado ajustado. Comparado con auditorías de consultoras grandes, que suelen tardar entre 2 y 6 semanas, 3 días hábiles sigue siendo rápido.",
+      "final.title": "¿Tu cuenta AWS entra en el alcance? Escribime y lo vemos en 30 minutos.",
+      "final.sub": "Sin compromiso. Si no es un buen fit, te lo digo en la primera llamada.",
+      "book.url": "https://calendar.app.google/SvMsLTXnQpgSC8mu9",
+      "meta.title": "Auditoría de Costos AWS en 3 días hábiles | Santiago Villarreal",
+      "meta.desc": "Auditoría de costos AWS con acceso de solo lectura. Informe con hallazgos priorizados por ahorro potencial y plan de acción en hasta 3 días hábiles."
+    },
+    en: {
+      "nav.viewPrice": "See pricing",
+      "hero.eyebrow": "AWS cost audit &middot; delivered within 3 business days",
+      "hero.title": 'Your AWS account has spend that <span class="hl">nobody is watching</span>.',
+      "hero.sub": "I review your account with read-only access, from EC2 and containers to networking and caching, and deliver a report with findings prioritized by estimated savings in dollars, plus a concrete action plan. No access keys, no made-up savings percentages.",
+      "hero.ctaBook": "Book the call",
+      "hero.ctaEmail": "Send me an email",
+      "hero.ctaLinkedin": "Reach out on LinkedIn",
+      "hero.access": "<strong>Access:</strong> Read-only cross-account IAM role. Revocable anytime.",
+      "term.title": "audit.sh",
+      "term.l2": "&gt; Connecting via cross-account IAM role...",
+      "term.l3": "&gt; Analyzing EC2, ECS/Fargate, RDS, Lambda...",
+      "term.l4": "&gt; Reviewing VPC, VPC Endpoints, ElastiCache, OpenSearch...",
+      "term.l5": "&gt; 3 categories with detected waste",
+      "term.l6": "&gt; Checking RI / Savings Plans coverage...",
+      "term.l7": "&gt; Report ready within 3 business days.",
+      "problem.label": "The problem",
+      "problem.title": "Cost Explorer shows you numbers. It doesn't tell you what to do with them.",
+      "problem.c1.title": "You grew faster than your cost controls",
+      "problem.c1.desc": "You scaled infrastructure to keep the product running. Nobody had time to go back and check what got over-provisioned along the way.",
+      "problem.c2.title": "You don't have a dedicated FinOps role",
+      "problem.c2.desc": "Your DevOps or Platform team is focused on keeping things running. Cost optimization competes for time with everything else, and loses.",
+      "problem.c3.title": "Hiring a big audit firm doesn't make sense yet",
+      "problem.c3.desc": "Large consulting firms quote weeks of work and thousands of dollars for something that, at your scale, can be solved faster and leaner.",
+      "problem.c4.title": "Everything else has an alarm. Cost doesn't",
+      "problem.c4.desc": "You built the workload, shipped it to prod, added some monitoring and alerting. If it scaled, you added observability (Datadog, PagerDuty). Compliance and security got attention because an audit or an incident forced it. Cost has no equivalent trigger, so it always stays last on the list.",
+      "steps.label": "How it works",
+      "steps.title": "Three steps, without pulling your whole team into it.",
+      "step1.title": "You create the read-only IAM role",
+      "step1.desc": "I give you the CloudFormation or Terraform template. Someone on your team applies it in 15-30 minutes. I never ask for access keys.",
+      "step1.meta": "~15-30 min on your end",
+      "step2.title": "I review the full account",
+      "step2.desc": "EC2, ECS/Fargate, EBS, S3, RDS, Lambda, networking (VPC and VPC Endpoints), ElastiCache (Redis/Valkey), OpenSearch, Reserved Instance and Savings Plans coverage, CloudWatch and CloudTrail costs (including what their metrics say about real usage), and data transfer patterns. I work from real data, not assumptions.",
+      "step3.title": "You get the report within 3 business days",
+      "step3.desc": "Findings ordered by estimated USD/month impact, not by item count. Each finding comes with the concrete step to fix it.",
+      "inc.label": "Scope",
+      "inc.title": "What the audit includes, and what comes later.",
+      "inc.yesTitle": "&gt; Includes",
+      "inc.yes1": "Analysis via read-only IAM role",
+      "inc.yes2": "EC2, ECS/Fargate, EBS, S3, RDS, Lambda",
+      "inc.yes3": "Networking: VPC and VPC Endpoints",
+      "inc.yes4": "ElastiCache (Redis/Valkey) and OpenSearch",
+      "inc.yes5": "CloudWatch and CloudTrail costs, including usage metrics",
+      "inc.yes6": "Reserved Instances / Savings Plans coverage",
+      "inc.yes7": "Data transfer pattern review",
+      "inc.yes8": "Report with findings prioritized by estimated USD/month",
+      "inc.yes9": "Concrete action plan per finding",
+      "inc.noTitle": "&gt; Doesn't include",
+      "inc.no1": "Implementing the changes (optional second stage, quoted separately)",
+      "inc.no2": "Application architecture or performance review",
+      "inc.no3": "A guaranteed savings percentage",
+      "inc.no4": "Ongoing monitoring (that would be a separate recurring service)",
+      "trust.label": "Why trust this",
+      "trust.title": "No made-up testimonials. Here's what's real.",
+      "trust.p1": 'I work as a <strong>DevOps, CloudOps and CloudSecOps Engineer</strong>, and also as a full stack developer. I use AWS hands-on every day: EC2, ECS/Fargate, S3, RDS, Lambda, VPC, ElastiCache, OpenSearch, Cost Explorer and Trusted Advisor, and I automate infrastructure with Terraform and CI/CD pipelines.',
+      "trust.p2": 'Across different projects I have worked with AWS infrastructure at companies including Bayer, Monsanto, RGA, Kiosite and Dedalord, in different roles: as part of internal teams and as an external consultant. You can see the detail of each project on <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" target="_blank" rel="noopener">my LinkedIn</a>.',
+      "trust.p3": "Security isn't an afterthought in what I do. That's why this audit starts with read-only access via IAM role, never with access keys or shared credentials.",
+      "trust.honesty": "I don't have public case studies of this specific service yet, because it's new. I'd rather say that than show you a made-up testimonial. The first clients will set the launch price and, with their permission, the first real cases I'll be able to show.",
+      "tag.security": "IAM / Cloud Security",
+      "tag.networking": "VPC & Networking",
+      "diagram.title": "Access model",
+      "diagram.node1": "Your AWS<br>account",
+      "diagram.node2": "Read-only<br>IAM Role",
+      "diagram.node3": "Audit<br>report",
+      "diagram.caption": "No access keys. No write access. The role gets revoked whenever you want, and I give you the instructions to do it in a minute.",
+      "price.label": "Pricing",
+      "price.title": "Fixed price. No surprises on the auditor's invoice.",
+      "price.badge": "LAUNCH PRICE",
+      "price.desc": "Launch price, valid for the first clients of this service.",
+      "price.li1": "Full report within 3 business days from confirmed access",
+      "price.li2": "30 min call before we start, to understand your account and confirm it fits the scope",
+      "price.li3": "One round of written follow-up questions on the report, included",
+      "price.scope": "This price applies to 1 AWS account (or up to 3 linked accounts) with a reference spend of up to USD 15,000/month. Larger accounts, or highly distributed architectures (multiple ECS clusters, multiple VPCs), are quoted separately, without forcing the fixed price.",
+      "price.cta": "Book the intro call",
+      "faq.label": "FAQ",
+      "faq.title": "What you're probably thinking right now.",
+      "faq.q1": "Do I need to give you my AWS access keys?",
+      "faq.a1": "No, never. I work with a cross-account read-only IAM role that you create and control. I give you a ready-to-apply template. You can revoke it anytime.",
+      "faq.q2": "Do you guarantee a savings percentage?",
+      "faq.a2": 'No. I show you real findings with estimated impact in dollars per month, calculated on your specific account. I don\'t use a generic marketing figure like "save 30%" because I can\'t back it up without having seen your case.',
+      "faq.q3": "What if my account is bigger or more complex than the standard scope?",
+      "faq.a3": "We cover that on the intro call. If your case exceeds the scope (more accounts, higher monthly spend, highly distributed architecture), I give you an adjusted quote before starting. The fixed price never gets forced onto a case that doesn't fit.",
+      "faq.q4": "Does the audit include implementing the changes?",
+      "faq.a4": "No. This service delivers the diagnosis and the action plan. Implementing the changes is an optional second stage, quoted based on the scope of what needs to be done.",
+      "faq.q5": "How do I revoke access once the audit is done?",
+      "faq.a5": "You delete the IAM role or remove the trust policy connecting it to my account. I include those instructions with the final report, it takes less than a minute.",
+      "faq.q6": "Why up to 3 days if this is supposed to be fast?",
+      "faq.a6": "Because I'd rather deliver a well-done report than rush the analysis to hit an overly tight deadline. Compared to audits from larger consulting firms, which usually take 2 to 6 weeks, 3 business days is still fast.",
+      "final.title": "Does your AWS account fit the scope? Message me and we'll cover it in 30 minutes.",
+      "final.sub": "No commitment. If it's not a good fit, I'll tell you on the first call.",
+      "book.url": "https://calendar.app.google/aeKnWb4SSMLwf5fF9",
+      "meta.title": "AWS Cost Audit in 5 Business Days | Santiago Villarreal",
+      "meta.desc": "AWS cost audit with read-only access. Report with findings prioritized by potential savings and an action plan within 3 business days."
+    }
+  };
+
+  function applyLang(lang){
+    var dict = I18N[lang] || I18N.es;
+    document.documentElement.lang = lang;
+    document.getElementById('page-title').textContent = dict['meta.title'];
+    document.getElementById('page-desc').setAttribute('content', dict['meta.desc']);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined){
+        el.innerHTML = dict[key];
+      }
+    });
+    var priceCard = document.querySelector('.price-card');
+    if(priceCard){ priceCard.setAttribute('data-badge', dict['price.badge']); }
+    document.querySelectorAll('.book-link').forEach(function(el){
+      if(dict['book.url']){ el.setAttribute('href', dict['book.url']); }
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+    });
+    try{ localStorage.setItem('siteLang', lang); }catch(e){}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      applyLang(btn.getAttribute('data-lang-btn'));
+    });
+  });
+
+  (function initLang(){
+    var saved = null;
+    try{ saved = localStorage.getItem('siteLang'); }catch(e){}
+    var lang = saved || (navigator.language && navigator.language.toLowerCase().indexOf('en') === 0 ? 'en' : 'es');
+    applyLang(lang);
+  })();
+
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(other){
+        if(other !== item){
+          other.classList.remove('open');
+          other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        }
+      });
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
 </script>
 
-<!-- Google Analytics -->
-<script type="text/javascript" src="/Scripts/GAnalytics.js"></script>
-
-<html lang="en" ng-app="thriveApp" class="height-100">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=1000, initial-scale=0.5, minimum-scale=0, maximum-scale=1.0">
-    <meta name="apple-itunes-app" content="app-id=1132907622, affiliate-data=, app-argument=">
-
-    <title>Thrive - InterviewStream</title>
-
-
-</head>
-<body ng-controller="ThriveController" class="height-100">
-    <!-- START TOP -->
-    <div id="top" class="clearfix hide">
-
-        <!-- Start App Logo -->
-        <div class="applogo">
-            <a href="#/Dashboard">
-                <img class="logo" src="/Content/Images/InterviewStream-LogoWhite.png" alt="InterviewStream Color Logo" />
-            </a>
-        </div>
-        <div class="applogo-sm">
-            <a href="#/Dashboard">
-                <img class="logo" src="/Content/Images/InterviewStream-LogoWhite-Sm.png" alt="InterviewStream Color Logo" />
-            </a>
-        </div>
-        <!-- End App Logo -->
-        <!-- Start Sidebar Show Hide Button -->
-        <a ng-click="toggleSidebar()" class="sidebar-open-button cursor-pointer"><i class="fa fa-bars"></i></a>
-        <a ng-click="toggleSidebar()" class="sidebar-open-button-mobile cursor-pointer"><i class="fa fa-bars"></i></a>
-        <!-- End Sidebar Show Hide Button -->
-        <!-- Start Top Menu -->
-        <!-- End Top Menu -->
-        <!-- Start Top Right -->
-        <ul class="top-right">
-
-
-            <!-- Start Searchbox -->
-            <!-- End Searchbox -->
-            <!--<li class="dropdown link Inbox">
-                <a ui-sref="Search"><i class="material-icons">search</i></a>
-            </li>
-            <!--<li class="dropdown link Inbox">
-                <a ui-sref="Notifications"><i class="material-icons">inbox</i><div ng-show="unreadNotifications.count > 0"id="inbox-msg-alert">{{unreadNotifications.count}}</div></a>
-            </li>-->
-            <li class="dropdown link Inbox">
-                <a ui-sref="Settings.Profile()"><i class="material-icons">settings</i></a>
-            </li>
-            <li class="dropdown link cursor-pointer">
-                <a ng-click="toggleSidepanel()" side-panel-clickout class="sidepanel-open-button"><img class="avatar" ng-src="{{User.AvatarUri}}" alt="img"></a>
-            </li>
-
-        </ul>
-        <!-- End Top Right -->
-
-    </div>
-    <!-- END TOP -->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- START SIDEBAR -->
-    <div id="sidebar" class="sidebar clearfix hide">
-
-        <ul class="sidebar-panel nav">
-            <li class="sidetitle">MAIN</li>
-            <li><a ui-sref="Dashboard" id="SideDashboard" class="waves-effect"><i class="material-icons font-sz-14p">home</i> Home</a></li>
-            <li>
-                <a class="waves-effect waves-hire active" id="SideTools"><i class="material-icons font-sz-14p">build</i> Tools</a>
-                <ul>
-                    <li><a ui-sref="Content.ThriveResources" id="SideContent" class="waves-effect"> Content Management</a></li>
-                    <li ng-show="AccountPermissions.Module.Hire == true"><a ui-sref="EmailTemplateEditor" id="SideEmailEditor" class="waves-effect"> Email Templates</a></li>
-                    <li ng-show="AccountPermissions.Module.HireLive == true"><a ui-sref="Live({ID: User.ID})" id="SideLive" class="waves-effect"> Calendar</a></li>
-                    <li ng-show="AccountPermissions.Module.CreateTrialAccounts == true"><a ng-click="CreateNewTrial()" class="waves-effect thrive-redImp"> Create New Free Trial</a></li>
-                    <li ng-show="AccountPermissions.Module.IsAdmin == true"><a ui-sref="Settings.PowerSearch" class="waves-effect thrive-redImp"> PowerSearch</a></li>
-                </ul>
-            </li>
-        </ul>
-
-        <ul class="sidebar-panel nav">
-            <li class="sidetitle" ng-show="AccountPermissions.Module.Hire == true">MODULES</li>
-            <li ng-show="AccountPermissions.Module.Hire == true">
-                <a ui-sref="Hire.Jobs" class="waves-effect waves-hire active" id="SideParentHire"><div data-icon="h" class="icon thrive-text-color"></div>Hire</a>
-                <ul>
-                    <li class="cursor-pointer"><a ng-click="GoToHireManager()" id="SideJob" class="waves-effect">Manage</a></li>
-                    <!--<li ng-show="AccountPermissions.Module.HirePrerecorded == true"><a ui-sref="InterviewTemplate" id="SideInterviewTemplate" class="waves-effect">Interview Templates</a></li>-->
-                    <li ng-show="AccountPermissions.Module.HirePrerecorded == true ||AccountPermissions.Module.HireLive == true"><a ui-sref="Candidates" id="SideCandidates" class="waves-effect">Candidate Profiles</a></li>
-                    <li ng-show="AccountPermissions.Module.HirePrerecorded == true"><a ui-sref="Reviewers" id="SideReviewer" class="waves-effect">Reviewer Profiles</a></li>
-                    <li ng-show="AccountPermissions.Module.HirePrerecorded == true"><a ui-sref="HireShareLinks" id="SideShareLinks" class="waves-effect">Share Links</a></li>
-                    <li ng-show="AccountPermissions.Module.HireReporting == true"><a ui-sref="Reporting" id="SideReports" class="waves-effect">Reporting</a></li>
-                    <li ng-show="AccountPermissions.Module.HireEnterprise == true"><a href="{{AccountPermissions.Module.HireLinkToEnterprise}}" target="_blank" class="waves-effect">Go to Enterprise</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- END SIDEBAR -->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- START CONTENT -->
-    <div ui-view class="height-100"></div>
-    <!-- End Content -->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- START SIDEPANEL -->
-    <div role="tabpanel" class="sidepanel">
-
-        <!-- Nav tabs -->
-        <uib-tabset>
-            <!-- "ME" TAB-->
-            <uib-tab>
-                <uib-tab-heading class="noselect">
-                    ME
-                </uib-tab-heading>
-                <div id="me-sidepanel" class="noselect">
-                    <div class="me-container">
-                        <!-- Avatar, location, view profile -->
-                        <div class="me-panel-title noselect">
-                            <img class="icon avatar-lg profile noselect" ng-src="{{User.AvatarUri}}" alt="img">
-                            <h1 class="noselect cursor-norm">{{User.FirstName}} {{User.LastName}}</h1>
-
-                            <p class="no-margin noselect cursor-norm"><strong><i class="fa fa-map-marker"></i> {{User.Account.Name}}</strong></p>
-                        </div>
-                        <hr />
-                        <!-- view profile -->
-                        <div id="view-profile">
-                            <button ng-hide="$state == 'CandidateDashboard'" id="profileBtn" class="btn thrive-button-preview text-color-white noselect" ui-sref="Settings.Profile({'Account': 'Root'})">View Profile</button>
-                        </div>
-                        <!-- Log out-->
-                        <div id="sign-out">
-                            <button class="btn thrive-button-1 noselect" ng-click="signOut()">Sign Out</button>
-                        </div>
-                        <div class="copywrite-and-links noselect cursor-norm">
-                            <p class="thrive-text-color no-margin noselect">Copyright {{year}} InterviewStream, Inc.</p>
-                            <p class="thrive-text-color no-margin noselect">All rights reserved.</p>
-                            <div class="terms-links noselect">
-                                <a href="http://www.interviewstream.com" target="_blank">InterviewStream</a> |
-                                <a target="_blank" href="{{TermsOfServiceUrl}}">Terms</a> |
-                                <a target="_blank" href="{{PrivacyPolicyUrl}}">Privacy</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </uib-tab>
-            <!-- "HELPFUL TIPS" TAB-->
-            <uib-tab>
-                <uib-tab-heading>
-                    HELP
-                </uib-tab-heading>
-                <div id="HelpTab">
-                    <div class="help-link-section">
-                        <h5 class="noselect cursor-norm">Helpful Tips</h5>
-                        <div class="help-link-container noselect">
-                            <p ng-repeat="link in HelpLinks">
-                                <a ng-if="link.Type == '1'" target="_blank" href="{{link.URL}}" class="help-link-links">{{link.Name}}</a>
-                            </p>
-                            <p ng-repeat="link in GlobalHelpLinks">
-                                <a ng-if="link.Type == '1'" target="_blank" href="{{link.URL}}" class="help-link-links font-w-bold">{{link.Name}}</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div id="contact-support" class="center">
-                        <h5 class="noselect cursor-norm">Report an Issue</h5>
-                        <button class="btn thrive-button-1 waves-effect" ng-click="reportIssueRequest()">Click Here</button>
-                    </div>
-                    <!--<div id="contact-support">
-                        <h5 class="noselect cursor-norm">Contact Support</h5>
-                        <div class="text-left noselect">
-                            <p class="noselect cursor-norm">Name</p>
-                            <input required id="contact-support-name" ng-model="HelpfulTipsTab.supportMsgName" placeholder="Enter name here" class="noselect thrive-input-color" />
-                            <p class="noselect cursor-norm">Message</p>
-                            <input required id="contact-support-msg" ng-model="HelpfulTipsTab.supportMsg" placeholder="Enter message here" class="noselect thrive-input-color" />
-                            <button class="btn thrive-button-1 noselect" ng-click="submitSupportMsg()">SUBMIT</button>
-                        </div>
-                    </div>-->
-                </div>
-            </uib-tab>
-            <!-- "FEEDBACK" TAB-->
-            <!--<uib-tab>
-                <uib-tab-heading class="noselect">
-                    FEEDBACK
-                </uib-tab-heading>
-                <div id="FeedbackTab" class="noselect">
-                    <div id="ratings" class="noselect">
-                        <h5 class="noselect cursor-norm">Rate your overall experience using InterviewStream</h5>
-                        <div id="stars" class="noselect cursor-norm">
-                            <uib-rating ng-model="FeedbackTab.stars" max="5" ng-click="$event.stopPropagation()"></uib-rating>
-                        </div>
-                        <p class="noselect cursor-norm">Comment</p>
-                        <textarea id="feedback-comment" ng-model="FeedbackTab.ratingComment" placeholder="Enter comments here" class="noselect thrive-input-color" onkeypress="preventEnterKeypress(event)" onclick="autosizeTextbox('#feedback-comment')" onkeyup="autosizeTextbox('#feedback-comment')"></textarea>
-                        <button class="btn thrive-button-1" ng-click="submitExperienceRating()">SUBMIT</button>
-                    </div>
-                    <div id="suggestions">
-                        <h5 class="noselect cursor-norm">Have a feature suggestion?</h5>
-                        <textarea required id="feedback-suggestion" ng-model="FeedbackTab.featureSuggestion" placeholder="Enter your suggestions here" class="noselect thrive-input-color" onkeypress="preventEnterKeypress(event)" onclick="autosizeTextbox('#feedback-suggestion')" onkeyup="autosizeTextbox('#feedback-suggestion')"></textarea>
-                        <br />
-                        <button class="btn thrive-button-1 noselect" ng-click="submitFeatureSuggestion()">SUBMIT</button>
-                    </div>
-                    <div id="manager-message">
-                        <h5 class="noselect cursor-norm">Contact Your Account Manager</h5>
-                        <img class="icon avatar-lg profile" src="/Content/Images/DefaultAvatar.png" alt="Account Manager Photo">
-                        <h6 class="noselect cursor-norm">Account Manager Name</h6>
-                        <div class="text-left">
-                            <p class="noselect cursor-norm">Name</p>
-                            <input required id="feedback-contact-name" class="noselect thrive-input-color" ng-model="FeedbackTab.managerMsgName" placeholder="Enter name here" />
-                            <p class="noselect cursor-norm">Message</p>
-                            <textarea required id="feedback-contact-msg" class="noselect thrive-input-color" ng-model="FeedbackTab.managerMsg" placeholder="Enter message here" onkeypress="preventEnterKeypress(event)" onclick="autosizeTextbox('#feedback-contact-msg')" onkeyup="autosizeTextbox('#feedback-contact-msg')"></textarea>
-                            <button class="btn thrive-button-1 noselect" ng-click="submitManagerMsg()">SUBMIT</button>
-                        </div>
-                    </div>
-                </div>
-            </uib-tab>-->
-        </uib-tabset>
-    </div>
 </body>
 </html>
