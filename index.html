@@ -663,6 +663,7 @@
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes4">ElastiCache (Redis/Valkey) y OpenSearch</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes5">Costos de CloudWatch y CloudTrail, incluyendo métricas de uso</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes6">Cobertura de Reserved Instances / Savings Plans</span></div>
+          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes6b">Cobertura de SageMaker Savings Plans / Redshift Reserved Nodes, si aplica</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes7">Revisión de patrones de data transfer</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes8">Informe con hallazgos priorizados por USD/mes estimado</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes9">Plan de acción concreto por hallazgo</span></div>
@@ -789,6 +790,13 @@
           </button>
           <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">Porque prefiero entregar un informe bien hecho antes que apurar el análisis para cumplir un plazo demasiado ajustado. Comparado con auditorías de consultoras grandes, que suelen tardar entre 2 y 6 semanas, 3 días hábiles sigue siendo rápido.</div></div>
         </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span data-i18n="faq.q7">¿Y si mi cuenta también tiene un stack de BigData o Machine Learning (EMR, Redshift, SageMaker, Kinesis)?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a7">Reviso toda la infraestructura estándar de la cuenta (EC2, contenedores, bases de datos, redes, caching), que en la mayoría de los casos sigue siendo una parte grande del gasto total, incluso en cuentas con stack de datos. La optimización específica de EMR, Redshift, SageMaker o Kinesis queda fuera del alcance actual, prefiero no venderte algo que no puedo respaldar con experiencia real. Si hace falta, coordino con especialistas en esos servicios.</div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -855,6 +863,7 @@
       "inc.yes4": "ElastiCache (Redis/Valkey) y OpenSearch",
       "inc.yes5": "Costos de CloudWatch y CloudTrail, incluyendo métricas de uso",
       "inc.yes6": "Cobertura de Reserved Instances / Savings Plans",
+      "inc.yes6b": "Cobertura de SageMaker Savings Plans / Redshift Reserved Nodes, si aplica",
       "inc.yes7": "Revisión de patrones de data transfer",
       "inc.yes8": "Informe con hallazgos priorizados por USD/mes estimado",
       "inc.yes9": "Plan de acción concreto por hallazgo",
@@ -899,6 +908,8 @@
       "faq.a5": "Eliminás el IAM role o le sacás el trust policy que lo conecta con mi cuenta. Te dejo esas instrucciones junto con el informe final, toma menos de un minuto.",
       "faq.q6": "¿Por qué hasta 3 días si esto se supone que es rápido?",
       "faq.a6": "Porque prefiero entregar un informe bien hecho antes que apurar el análisis para cumplir un plazo demasiado ajustado. Comparado con auditorías de consultoras grandes, que suelen tardar entre 2 y 6 semanas, 3 días hábiles sigue siendo rápido.",
+      "faq.q7": "¿Y si mi cuenta también tiene un stack de BigData o Machine Learning (EMR, Redshift, SageMaker, Kinesis)?",
+      "faq.a7": "Reviso toda la infraestructura estándar de la cuenta (EC2, contenedores, bases de datos, redes, caching), que en la mayoría de los casos sigue siendo una parte grande del gasto total, incluso en cuentas con stack de datos. Si usás SageMaker o Redshift, también reviso su cobertura de Savings Plans / Reserved Nodes, es un análisis de facturación puro, sin tocar nada de lo que corre. Lo que queda fuera es la optimización de workload en sí (EMR, Kinesis, MSK, Glue, Athena), donde el ahorro depende de decisiones de arquitectura que prefiero dejar en manos de especialistas en datos.",
       "final.title": "¿Tu cuenta AWS entra en el alcance? Escribime y lo vemos en 30 minutos.",
       "final.sub": "Sin compromiso. Si no es un buen fit, te lo digo en la primera llamada.",
       "book.url": "https://calendar.app.google/SvMsLTXnQpgSC8mu9",
@@ -949,6 +960,7 @@
       "inc.yes4": "ElastiCache (Redis/Valkey) and OpenSearch",
       "inc.yes5": "CloudWatch and CloudTrail costs, including usage metrics",
       "inc.yes6": "Reserved Instances / Savings Plans coverage",
+      "inc.yes6b": "SageMaker Savings Plans / Redshift Reserved Nodes coverage, if applicable",
       "inc.yes7": "Data transfer pattern review",
       "inc.yes8": "Report with findings prioritized by estimated USD/month",
       "inc.yes9": "Concrete action plan per finding",
@@ -993,6 +1005,8 @@
       "faq.a5": "You delete the IAM role or remove the trust policy connecting it to my account. I include those instructions with the final report, it takes less than a minute.",
       "faq.q6": "Why up to 3 days if this is supposed to be fast?",
       "faq.a6": "Because I'd rather deliver a well-done report than rush the analysis to hit an overly tight deadline. Compared to audits from larger consulting firms, which usually take 2 to 6 weeks, 3 business days is still fast.",
+      "faq.q7": "What if my account also runs a BigData or Machine Learning stack (EMR, Redshift, SageMaker, Kinesis)?",
+      "faq.a7": "I review all the standard infrastructure in the account (EC2, containers, databases, networking, caching), which in most cases is still a large share of total spend, even in accounts with a data stack. If you use SageMaker or Redshift, I also review your Savings Plans / Reserved Nodes coverage there, it's a pure billing analysis, nothing touches what's actually running. What's out of scope is workload-level optimization itself (EMR, Kinesis, MSK, Glue, Athena), where the savings depend on architecture decisions I'd rather leave to data specialists.",
       "final.title": "Does your AWS account fit the scope? Message me and we'll cover it in 30 minutes.",
       "final.sub": "No commitment. If it's not a good fit, I'll tell you on the first call.",
       "book.url": "https://calendar.app.google/aeKnWb4SSMLwf5fF9",
