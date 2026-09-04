@@ -4,15 +4,16 @@
   2. Si cambia el SLA, la duración de la llamada, o el alcance de servicios, actualizar en el diccionario I18N más abajo, en ambos idiomas (es / en).
 -->
 <!DOCTYPE html>
-<html lang="es">
+
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title">Auditoría de Costos AWS en 3 días hábiles | Santiago Villarreal</title>
-<meta id="page-desc" name="description" content="Auditoría de costos AWS con acceso de solo lectura. Informe con hallazgos priorizados por ahorro potencial y plan de acción en hasta 3 días hábiles.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title id="page-title">AWS Cost Audit in 5 Business Days | Santiago Villarreal</title>
+<meta content="AWS cost audit with read-only access. Report with findings prioritized by potential savings and an action plan within 3 business days." id="page-desc" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
   :root{
     --bg: #0B1220;
@@ -538,277 +539,259 @@
 </style>
 </head>
 <body>
-
 <header class="nav">
-  <div class="wrap">
-    <div class="brand">// <span>audit</span>.aws</div>
-    <div class="nav-right">
-      <a class="nav-cta" href="#precio" data-i18n="nav.viewPrice">Ver precio</a>
-      <div class="lang-switch">
-        <button class="lang-btn" data-lang-btn="es">ES</button>
-        <button class="lang-btn" data-lang-btn="en">EN</button>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="brand">// <span>audit</span>.aws</div>
+<div class="nav-right">
+<a class="nav-cta" data-i18n="nav.viewPrice" href="#precio">See pricing</a>
+<div class="lang-switch">
+<button class="lang-btn" data-lang-btn="es">ES</button>
+<button class="lang-btn" data-lang-btn="en">EN</button>
+</div>
+</div>
+</div>
 </header>
-
 <main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="eyebrow" data-i18n="hero.eyebrow">Auditoría de costos AWS &middot; entrega en hasta 3 días hábiles</div>
-      <h1 data-i18n="hero.title">Tu cuenta de AWS tiene gasto que <span class="hl">nadie está mirando</span>.</h1>
-      <p class="hero-sub" data-i18n="hero.sub">
-        Reviso tu cuenta con acceso de solo lectura, desde EC2 y contenedores hasta redes y caching, y te entrego un informe con hallazgos priorizados por ahorro estimado en dólares, más un plan de acción concreto. Sin access keys, sin promesas de porcentaje inventadas.
-      </p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary book-link" href="https://calendar.app.google/SvMsLTXnQpgSC8mu9" target="_blank" rel="noopener" data-i18n="hero.ctaBook">Agendar la llamada</a>
-        <a class="btn btn-secondary" href="mailto:santiago.villarreal.js@gmail.com?subject=Auditoría de costos AWS" data-i18n="hero.ctaEmail">Escribime un mail</a>
-      </div>
-      <div class="access-note" data-i18n="hero.access"><strong>Acceso:</strong> IAM role cross-account de solo lectura. Revocable en cualquier momento.</div>
-
-      <div class="terminal" role="img" aria-label="Terminal mostrando el proceso de auditoría">
-        <div class="terminal-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <span class="terminal-title" data-i18n="term.title">audit.sh</span>
-        </div>
-        <div class="terminal-body">
-          <div class="line l1"><span class="prompt">$ audit --account=prod --access=read-only</span></div>
-          <div class="line l2 muted" data-i18n="term.l2">&gt; Conectando via IAM role cross-account...</div>
-          <div class="line l3 muted" data-i18n="term.l3">&gt; Analizando EC2, ECS/Fargate, RDS, Lambda...</div>
-          <div class="line l4 muted" data-i18n="term.l4">&gt; Revisando VPC, VPC Endpoints, ElastiCache, OpenSearch...</div>
-          <div class="line l5 flag" data-i18n="term.l5">&gt; 3 categorías con desperdicio detectado</div>
-          <div class="line l6 muted" data-i18n="term.l6">&gt; Revisando cobertura de RIs / Savings Plans...</div>
-          <div class="line l7 prompt" data-i18n="term.l7">&gt; Informe listo en hasta 3 días hábiles.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="problema">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-label" data-i18n="problem.label">El problema</div>
-        <h2 data-i18n="problem.title">Cost Explorer te muestra números. No te dice qué hacer con ellos.</h2>
-      </div>
-      <div class="problem-grid">
-        <div class="problem-card">
-          <div class="num">01</div>
-          <strong data-i18n="problem.c1.title">Creciste más rápido que tu control de costos</strong>
-          <p data-i18n="problem.c1.desc">Escalaste infraestructura para sostener el producto. Nadie tuvo tiempo de volver a mirar qué quedó sobreprovisionado en el camino.</p>
-        </div>
-        <div class="problem-card">
-          <div class="num">02</div>
-          <strong data-i18n="problem.c2.title">No tenés un rol de FinOps dedicado</strong>
-          <p data-i18n="problem.c2.desc">Tu equipo de DevOps o Platform está enfocado en que todo funcione. Optimizar costos compite por tiempo con todo lo demás, y pierde.</p>
-        </div>
-        <div class="problem-card">
-          <div class="num">03</div>
-          <strong data-i18n="problem.c3.title">Contratar una auditoría grande no tiene sentido todavía</strong>
-          <p data-i18n="problem.c3.desc">Las consultoras grandes cotizan semanas de trabajo y miles de dólares para algo que en tu escala se puede resolver más rápido y más chico.</p>
-        </div>
-        <div class="problem-card">
-          <div class="num">04</div>
-          <strong data-i18n="problem.c4.title">Todo lo demás sí tiene una alarma. Los costos no</strong>
-          <p data-i18n="problem.c4.desc">Armaste el workload, lo llevaste a prod, sumaste algo de monitoring y alerting. Si escaló, agregaste observability (Datadog, PagerDuty). Compliance y seguridad entraron porque hubo una auditoría o un incidente de por medio. Los costos no tienen ese disparador, así que siempre quedan últimos en la lista.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="como-funciona">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-label" data-i18n="steps.label">Cómo funciona</div>
-        <h2 data-i18n="steps.title">Tres pasos, sin que tu equipo tenga que meterse de lleno.</h2>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div>
-            <div class="step-title" data-i18n="step1.title">Creás el IAM role de solo lectura</div>
-            <div class="step-desc" data-i18n="step1.desc">Te paso el template de CloudFormation o Terraform. Alguien de tu equipo lo aplica en 15-30 minutos. Nunca te pido access keys.</div>
-            <span class="step-meta" data-i18n="step1.meta">~15-30 min de tu lado</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <div>
-            <div class="step-title" data-i18n="step2.title">Reviso la cuenta completa</div>
-            <div class="step-desc" data-i18n="step2.desc">EC2, ECS/Fargate, EBS, S3, RDS, Lambda, redes (VPC y VPC Endpoints), ElastiCache (Redis/Valkey), OpenSearch, cobertura de Reserved Instances y Savings Plans, costos de CloudWatch y CloudTrail (incluyendo lo que sus métricas dicen sobre uso real), y patrones de data transfer. Trabajo sobre datos reales, no sobre supuestos.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <div>
-            <div class="step-title" data-i18n="step3.title">Recibís el informe en hasta 3 días hábiles</div>
-            <div class="step-desc" data-i18n="step3.desc">Hallazgos ordenados por impacto estimado en USD/mes, no por cantidad de items. Cada hallazgo viene con el paso concreto para resolverlo.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="incluye">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-label" data-i18n="inc.label">Alcance</div>
-        <h2 data-i18n="inc.title">Qué incluye la auditoría y qué queda para después.</h2>
-      </div>
-      <div class="ledger">
-        <div class="ledger-col yes">
-          <h3 data-i18n="inc.yesTitle">&gt; Incluye</h3>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes1">Análisis vía IAM role de solo lectura</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes2">EC2, ECS/Fargate, EBS, S3, RDS, Lambda</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes3">Networking: VPC y VPC Endpoints</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes4">ElastiCache (Redis/Valkey) y OpenSearch</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes5">Costos de CloudWatch y CloudTrail, incluyendo métricas de uso</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes6">Cobertura de Reserved Instances / Savings Plans</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes7">Revisión de patrones de data transfer</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes8">Informe con hallazgos priorizados por USD/mes estimado</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes9">Plan de acción concreto por hallazgo</span></div>
-        </div>
-        <div class="ledger-col no">
-          <h3 data-i18n="inc.noTitle">&gt; No incluye</h3>
-          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no1">Ejecución de los cambios (segunda etapa, cotizada aparte)</span></div>
-          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no2">Revisión de arquitectura de aplicación o performance</span></div>
-          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no3">Garantía de ahorro en porcentaje</span></div>
-          <div class="ledger-item"><span class="mark">&minus;</span> <span data-i18n="inc.no4">Monitoreo continuo (eso sería un servicio recurrente aparte)</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="quien-soy">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-label" data-i18n="trust.label">Por qué confiar en esto</div>
-        <h2 data-i18n="trust.title">Sin testimonios inventados. Esto es lo que hay.</h2>
-      </div>
-      <div class="trust-grid">
-        <div class="trust-bio">
-          <p data-i18n="trust.p1">Trabajo como <strong>DevOps, CloudOps y CloudSecOps Engineer</strong>, además de desarrollo full stack. Uso AWS de forma práctica todos los días: EC2, ECS/Fargate, S3, RDS, Lambda, VPC, ElastiCache, OpenSearch, Cost Explorer y Trusted Advisor, y automatizo infraestructura con Terraform y pipelines de CI/CD.</p>
-          <p data-i18n="trust.p2">A lo largo de distintos proyectos trabajé con infraestructura AWS en empresas como Bayer, Monsanto, RGA, Kiosite y Dedalord, en distintos roles: como parte de equipos internos y como consultor externo. Podés ver el detalle de cada proyecto en <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" target="_blank" rel="noopener">mi LinkedIn</a>.</p>
-          <p data-i18n="trust.p3">La seguridad no es un agregado en lo que hago. Por eso esta auditoría arranca con acceso de solo lectura vía IAM role, nunca con access keys ni credenciales compartidas.</p>
-          <div class="honesty-box" data-i18n="trust.honesty">
-            Todavía no tengo casos públicos de este servicio puntual, porque es nuevo. Prefiero decir esto en vez de mostrarte un testimonio inventado. Los primeros clientes van a definir el precio de lanzamiento y, con su permiso, los primeros casos reales que voy a poder mostrar.
-          </div>
-          <div class="tags">
-            <span class="tag">Terraform</span>
-            <span class="tag">CI/CD</span>
-            <span class="tag" data-i18n="tag.security">IAM / Seguridad Cloud</span>
-            <span class="tag">Cost Explorer</span>
-            <span class="tag">ECS / Fargate</span>
-            <span class="tag" data-i18n="tag.networking">VPC y Networking</span>
-            <span class="tag">ElastiCache</span>
-            <span class="tag">OpenSearch</span>
-          </div>
-        </div>
-        <div class="access-diagram">
-          <div class="diagram-title" data-i18n="diagram.title">Modelo de acceso</div>
-          <div class="flow">
-            <div class="flow-node" data-i18n="diagram.node1">Tu cuenta<br>AWS</div>
-            <span class="flow-arrow">&rarr;</span>
-            <div class="flow-node mid" data-i18n="diagram.node2">IAM Role<br>solo lectura</div>
-            <span class="flow-arrow">&rarr;</span>
-            <div class="flow-node" data-i18n="diagram.node3">Informe<br>de auditoría</div>
-          </div>
-          <p class="flow-caption" data-i18n="diagram.caption">Sin access keys. Sin escritura. El role se revoca cuando querés, y te paso las instrucciones para hacerlo en un minuto.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="precio">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-label" data-i18n="price.label">Precio</div>
-        <h2 data-i18n="price.title">Precio fijo. Sin sorpresas en la factura del auditor.</h2>
-      </div>
-      <div class="price-card" data-badge="PRECIO DE LANZAMIENTO">
-        <div class="price-amount">USD 900 <span class="price-old">USD 1.500</span></div>
-        <div class="price-desc" data-i18n="price.desc">Precio de lanzamiento, válido para los primeros clientes de este servicio.</div>
-        <ul class="price-list">
-          <li><span class="mark">+</span> <span data-i18n="price.li1">Informe completo en hasta 3 días hábiles desde que confirmamos el acceso</span></li>
-          <li><span class="mark">+</span> <span data-i18n="price.li2">Llamada de 30 min antes de arrancar, para entender tu cuenta y confirmar que entra en el alcance</span></li>
-          <li><span class="mark">+</span> <span data-i18n="price.li3">Una ronda de preguntas por escrito sobre el informe, incluida</span></li>
-        </ul>
-        <div class="price-scope" data-i18n="price.scope">
-          Este precio aplica a 1 cuenta AWS, o a varias cuentas bajo AWS Organizations con billing consolidado, con gasto de referencia de hasta USD 15.000/mes. Si son cuentas independientes sin Organizations, cada cuenta adicional a la primera suma USD 250 al precio fijo. Cuentas más grandes, o con arquitecturas muy distribuidas (múltiples clusters ECS, múltiples VPCs), se cotizan aparte, sin forzar el precio fijo.
-        </div>
-        <a class="btn btn-primary book-link" href="https://calendar.app.google/SvMsLTXnQpgSC8mu9" target="_blank" rel="noopener" data-i18n="price.cta">Agendar la llamada inicial</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-label" data-i18n="faq.label">Preguntas frecuentes</div>
-        <h2 data-i18n="faq.title">Lo que probablemente estás pensando ahora.</h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span data-i18n="faq.q1">¿Necesito darte mis access keys de AWS?</span>
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a1">No, nunca. Trabajo con un IAM role cross-account de solo lectura que vos creás y controlás. Te paso el template listo para aplicar. Podés revocarlo en cualquier momento.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span data-i18n="faq.q2">¿Garantizás un porcentaje de ahorro?</span>
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">No. Te muestro hallazgos reales con impacto estimado en dólares por mes, calculado sobre tu cuenta puntual. No uso una cifra de marketing genérica tipo "ahorrá 30%" porque no la puedo respaldar sin haber visto tu caso.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span data-i18n="faq.q3">¿Qué pasa si mi cuenta es más grande o más compleja que el alcance estándar?</span>
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">En la llamada inicial lo vemos. Si tenés varias cuentas (por ejemplo una por ambiente) bajo AWS Organizations con billing consolidado, entran en el precio estándar. Si son cuentas independientes sin Organizations, cada cuenta adicional a la primera suma USD 250. Si tu caso excede el alcance de otra forma (gasto mensual mayor, arquitectura muy distribuida), te paso una cotización ajustada antes de arrancar. Nunca se fuerza el precio fijo sobre un caso que no entra.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span data-i18n="faq.q4">¿La auditoría incluye implementar los cambios?</span>
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">No. Este servicio entrega el diagnóstico y el plan de acción. La ejecución de los cambios es una segunda etapa opcional, que se cotiza según el alcance de lo que haya que hacer.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span data-i18n="faq.q5">¿Cómo revoco el acceso cuando termina la auditoría?</span>
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">Eliminás el IAM role o le sacás el trust policy que lo conecta con mi cuenta. Te dejo esas instrucciones junto con el informe final, toma menos de un minuto.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span data-i18n="faq.q6">¿Por qué hasta 3 días si esto se supone que es rápido?</span>
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">Porque prefiero entregar un informe bien hecho antes que apurar el análisis para cumplir un plazo demasiado ajustado. Comparado con auditorías de consultoras grandes, que suelen tardar entre 2 y 6 semanas, 3 días hábiles sigue siendo rápido.</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="final-cta">
-    <div class="wrap">
-      <h2 data-i18n="final.title">¿Tu cuenta AWS entra en el alcance? Escribime y lo vemos en 30 minutos.</h2>
-      <p class="section-sub" data-i18n="final.sub">Sin compromiso. Si no es un buen fit, te lo digo en la primera llamada.</p>
-      <div class="final-ctas">
-        <a class="btn btn-primary book-link" href="https://calendar.app.google/SvMsLTXnQpgSC8mu9" target="_blank" rel="noopener" data-i18n="hero.ctaBook">Agendar la llamada</a>
-        <a class="btn btn-secondary" href="mailto:santiago.villarreal.js@gmail.com?subject=Auditoría de costos AWS" data-i18n="hero.ctaEmail">Escribime un mail</a>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+<div class="wrap">
+<div class="eyebrow" data-i18n="hero.eyebrow">AWS cost audit · delivered within 3 business days</div>
+<h1 data-i18n="hero.title">Your AWS account has spend that <span class="hl">nobody is watching</span>.</h1>
+<p class="hero-sub" data-i18n="hero.sub">I review your account with read-only access, from EC2 and containers to networking and caching, and deliver a report with findings prioritized by estimated savings in dollars, plus a concrete action plan. No access keys, no made-up savings percentages.</p>
+<div class="hero-ctas">
+<a class="btn btn-primary book-link" data-i18n="hero.ctaBook" href="https://calendar.app.google/aeKnWb4SSMLwf5fF9" rel="noopener" target="_blank">Book the call</a>
+<a class="btn btn-secondary" data-i18n="hero.ctaEmail" href="mailto:santiago.villarreal.js@gmail.com?subject=Auditoría de costos AWS">Send me an email</a>
+</div>
+<div class="access-note" data-i18n="hero.access"><strong>Access:</strong> Read-only cross-account IAM role. Revocable anytime.</div>
+<div aria-label="Terminal mostrando el proceso de auditoría" class="terminal" role="img">
+<div class="terminal-bar">
+<span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+<span class="terminal-title" data-i18n="term.title">audit.sh</span>
+</div>
+<div class="terminal-body">
+<div class="line l1"><span class="prompt">$ audit --account=prod --access=read-only</span></div>
+<div class="line l2 muted" data-i18n="term.l2">&gt; Connecting via cross-account IAM role...</div>
+<div class="line l3 muted" data-i18n="term.l3">&gt; Analyzing EC2, ECS/Fargate, RDS, Lambda...</div>
+<div class="line l4 muted" data-i18n="term.l4">&gt; Reviewing VPC, VPC Endpoints, ElastiCache, OpenSearch...</div>
+<div class="line l5 flag" data-i18n="term.l5">&gt; 3 categories with detected waste</div>
+<div class="line l6 muted" data-i18n="term.l6">&gt; Checking RI / Savings Plans coverage...</div>
+<div class="line l7 prompt" data-i18n="term.l7">&gt; Report ready within 3 business days.</div>
+</div>
+</div>
+</div>
+</section>
+<section id="problema">
+<div class="wrap">
+<div class="section-head">
+<div class="section-label" data-i18n="problem.label">The problem</div>
+<h2 data-i18n="problem.title">Cost Explorer shows you numbers. It doesn't tell you what to do with them.</h2>
+</div>
+<div class="problem-grid">
+<div class="problem-card">
+<div class="num">01</div>
+<strong data-i18n="problem.c1.title">You grew faster than your cost controls</strong>
+<p data-i18n="problem.c1.desc">You scaled infrastructure to keep the product running. Nobody had time to go back and check what got over-provisioned along the way.</p>
+</div>
+<div class="problem-card">
+<div class="num">02</div>
+<strong data-i18n="problem.c2.title">You don't have a dedicated FinOps role</strong>
+<p data-i18n="problem.c2.desc">Your DevOps or Platform team is focused on keeping things running. Cost optimization competes for time with everything else, and loses.</p>
+</div>
+<div class="problem-card">
+<div class="num">03</div>
+<strong data-i18n="problem.c3.title">Hiring a big audit firm doesn't make sense yet</strong>
+<p data-i18n="problem.c3.desc">Large consulting firms quote weeks of work and thousands of dollars for something that, at your scale, can be solved faster and leaner.</p>
+</div>
+<div class="problem-card">
+<div class="num">04</div>
+<strong data-i18n="problem.c4.title">Everything else has an alarm. Cost doesn't</strong>
+<p data-i18n="problem.c4.desc">You built the workload, shipped it to prod, added some monitoring and alerting. If it scaled, you added observability (Datadog, PagerDuty). Compliance and security got attention because an audit or an incident forced it. Cost has no equivalent trigger, so it always stays last on the list.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="como-funciona">
+<div class="wrap">
+<div class="section-head">
+<div class="section-label" data-i18n="steps.label">How it works</div>
+<h2 data-i18n="steps.title">Three steps, without pulling your whole team into it.</h2>
+</div>
+<div class="steps">
+<div class="step">
+<div class="step-num">01</div>
+<div>
+<div class="step-title" data-i18n="step1.title">You create the read-only IAM role</div>
+<div class="step-desc" data-i18n="step1.desc">I give you the CloudFormation or Terraform template. Someone on your team applies it in 15-30 minutes. I never ask for access keys.</div>
+<span class="step-meta" data-i18n="step1.meta">~15-30 min on your end</span>
+</div>
+</div>
+<div class="step">
+<div class="step-num">02</div>
+<div>
+<div class="step-title" data-i18n="step2.title">I review the full account</div>
+<div class="step-desc" data-i18n="step2.desc">EC2, ECS/Fargate, EBS, S3, RDS, Lambda, networking (VPC and VPC Endpoints), ElastiCache (Redis/Valkey), OpenSearch, Reserved Instance and Savings Plans coverage, CloudWatch and CloudTrail costs (including what their metrics say about real usage), and data transfer patterns. I work from real data, not assumptions.</div>
+</div>
+</div>
+<div class="step">
+<div class="step-num">03</div>
+<div>
+<div class="step-title" data-i18n="step3.title">You get the report within 3 business days</div>
+<div class="step-desc" data-i18n="step3.desc">Findings ordered by estimated USD/month impact, not by item count. Each finding comes with the concrete step to fix it.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="incluye">
+<div class="wrap">
+<div class="section-head">
+<div class="section-label" data-i18n="inc.label">Scope</div>
+<h2 data-i18n="inc.title">What the audit includes, and what comes later.</h2>
+</div>
+<div class="ledger">
+<div class="ledger-col yes">
+<h3 data-i18n="inc.yesTitle">&gt; Includes</h3>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes1">Analysis via read-only IAM role</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes2">EC2, ECS/Fargate, EBS, S3, RDS, Lambda</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes3">Networking: VPC and VPC Endpoints</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes4">ElastiCache (Redis/Valkey) and OpenSearch</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes5">CloudWatch and CloudTrail costs, including usage metrics</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes6">Reserved Instances / Savings Plans coverage</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes7">Data transfer pattern review</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes8">Report with findings prioritized by estimated USD/month</span></div>
+<div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes9">Concrete action plan per finding</span></div>
+</div>
+<div class="ledger-col no">
+<h3 data-i18n="inc.noTitle">&gt; Doesn't include</h3>
+<div class="ledger-item"><span class="mark">−</span> <span data-i18n="inc.no1">Implementing the changes (optional second stage, quoted separately)</span></div>
+<div class="ledger-item"><span class="mark">−</span> <span data-i18n="inc.no2">Application architecture or performance review</span></div>
+<div class="ledger-item"><span class="mark">−</span> <span data-i18n="inc.no3">A guaranteed savings percentage</span></div>
+<div class="ledger-item"><span class="mark">−</span> <span data-i18n="inc.no4">Ongoing monitoring (that would be a separate recurring service)</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="quien-soy">
+<div class="wrap">
+<div class="section-head">
+<div class="section-label" data-i18n="trust.label">Why trust this</div>
+<h2 data-i18n="trust.title">No made-up testimonials. Here's what's real.</h2>
+</div>
+<div class="trust-grid">
+<div class="trust-bio">
+<p data-i18n="trust.p1">I work as a <strong>DevOps, CloudOps and CloudSecOps Engineer</strong>, and also as a full stack developer. I use AWS hands-on every day: EC2, ECS/Fargate, S3, RDS, Lambda, VPC, ElastiCache, OpenSearch, Cost Explorer and Trusted Advisor, and I automate infrastructure with Terraform and CI/CD pipelines.</p>
+<p data-i18n="trust.p2">Across different projects I have worked with AWS infrastructure at companies including Bayer, Monsanto, RGA, Kiosite and Dedalord, in different roles: as part of internal teams and as an external consultant. You can see the detail of each project on <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" rel="noopener" target="_blank">my LinkedIn</a>.</p>
+<p data-i18n="trust.p3">Security isn't an afterthought in what I do. That's why this audit starts with read-only access via IAM role, never with access keys or shared credentials.</p>
+<div class="honesty-box" data-i18n="trust.honesty">I don't have public case studies of this specific service yet, because it's new. I'd rather say that than show you a made-up testimonial. The first clients will set the launch price and, with their permission, the first real cases I'll be able to show.</div>
+<div class="tags">
+<span class="tag">Terraform</span>
+<span class="tag">CI/CD</span>
+<span class="tag" data-i18n="tag.security">IAM / Cloud Security</span>
+<span class="tag">Cost Explorer</span>
+<span class="tag">ECS / Fargate</span>
+<span class="tag" data-i18n="tag.networking">VPC &amp; Networking</span>
+<span class="tag">ElastiCache</span>
+<span class="tag">OpenSearch</span>
+</div>
+</div>
+<div class="access-diagram">
+<div class="diagram-title" data-i18n="diagram.title">Access model</div>
+<div class="flow">
+<div class="flow-node" data-i18n="diagram.node1">Your AWS<br/>account</div>
+<span class="flow-arrow">→</span>
+<div class="flow-node mid" data-i18n="diagram.node2">Read-only<br/>IAM Role</div>
+<span class="flow-arrow">→</span>
+<div class="flow-node" data-i18n="diagram.node3">Audit<br/>report</div>
+</div>
+<p class="flow-caption" data-i18n="diagram.caption">No access keys. No write access. The role gets revoked whenever you want, and I give you the instructions to do it in a minute.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="precio">
+<div class="wrap">
+<div class="section-head">
+<div class="section-label" data-i18n="price.label">Pricing</div>
+<h2 data-i18n="price.title">Fixed price. No surprises on the auditor's invoice.</h2>
+</div>
+<div class="price-card" data-badge="LAUNCH PRICE">
+<div class="price-amount">USD 900 <span class="price-old">USD 1.500</span></div>
+<div class="price-desc" data-i18n="price.desc">Launch price, valid for the first clients of this service.</div>
+<ul class="price-list">
+<li><span class="mark">+</span> <span data-i18n="price.li1">Full report within 3 business days from confirmed access</span></li>
+<li><span class="mark">+</span> <span data-i18n="price.li2">30 min call before we start, to understand your account and confirm it fits the scope</span></li>
+<li><span class="mark">+</span> <span data-i18n="price.li3">One round of written follow-up questions on the report, included</span></li>
+</ul>
+<div class="price-scope" data-i18n="price.scope">This price applies to 1 AWS account, or to multiple accounts under AWS Organizations with consolidated billing, with a reference spend of up to USD 15,000/month. If accounts are independent without Organizations, each additional account beyond the first adds USD 250 to the fixed price. Larger accounts, or highly distributed architectures (multiple ECS clusters, multiple VPCs), are quoted separately, without forcing the fixed price.</div>
+<a class="btn btn-primary book-link" data-i18n="price.cta" href="https://calendar.app.google/aeKnWb4SSMLwf5fF9" rel="noopener" target="_blank">Book the intro call</a>
+</div>
+</div>
+</section>
+<section id="faq">
+<div class="wrap">
+<div class="section-head">
+<div class="section-label" data-i18n="faq.label">FAQ</div>
+<h2 data-i18n="faq.title">What you're probably thinking right now.</h2>
+</div>
+<div class="faq-list">
+<div class="faq-item">
+<button aria-expanded="false" class="faq-q">
+<span data-i18n="faq.q1">Do I need to give you my AWS access keys?</span>
+<span class="icon">+</span>
+</button>
+<div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a1">No, never. I work with a cross-account read-only IAM role that you create and control. I give you a ready-to-apply template. You can revoke it anytime.</div></div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-q">
+<span data-i18n="faq.q2">Do you guarantee a savings percentage?</span>
+<span class="icon">+</span>
+</button>
+<div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">No. I show you real findings with estimated impact in dollars per month, calculated on your specific account. I don't use a generic marketing figure like "save 30%" because I can't back it up without having seen your case.</div></div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-q">
+<span data-i18n="faq.q3">What if my account is bigger or more complex than the standard scope?</span>
+<span class="icon">+</span>
+</button>
+<div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">We cover that on the intro call. If you have multiple accounts (one per environment, for example) under AWS Organizations with consolidated billing, they fall under the standard price. If accounts are independent without Organizations, each additional account beyond the first adds USD 250. If your case exceeds the scope in another way (higher monthly spend, highly distributed architecture), I give you an adjusted quote before starting. The fixed price never gets forced onto a case that doesn't fit.</div></div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-q">
+<span data-i18n="faq.q4">Does the audit include implementing the changes?</span>
+<span class="icon">+</span>
+</button>
+<div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">No. This service delivers the diagnosis and the action plan. Implementing the changes is an optional second stage, quoted based on the scope of what needs to be done.</div></div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-q">
+<span data-i18n="faq.q5">How do I revoke access once the audit is done?</span>
+<span class="icon">+</span>
+</button>
+<div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">You delete the IAM role or remove the trust policy connecting it to my account. I include those instructions with the final report, it takes less than a minute.</div></div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-q">
+<span data-i18n="faq.q6">Why up to 3 days if this is supposed to be fast?</span>
+<span class="icon">+</span>
+</button>
+<div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">Because I'd rather deliver a well-done report than rush the analysis to hit an overly tight deadline. Compared to audits from larger consulting firms, which usually take 2 to 6 weeks, 3 business days is still fast.</div></div>
+</div>
+</div>
+</div>
+</section>
+<section class="final-cta">
+<div class="wrap">
+<h2 data-i18n="final.title">Does your AWS account fit the scope? Message me and we'll cover it in 30 minutes.</h2>
+<p class="section-sub" data-i18n="final.sub">No commitment. If it's not a good fit, I'll tell you on the first call.</p>
+<div class="final-ctas">
+<a class="btn btn-primary book-link" data-i18n="hero.ctaBook" href="https://calendar.app.google/aeKnWb4SSMLwf5fF9" rel="noopener" target="_blank">Book the call</a>
+<a class="btn btn-secondary" data-i18n="hero.ctaEmail" href="mailto:santiago.villarreal.js@gmail.com?subject=Auditoría de costos AWS">Send me an email</a>
+</div>
+</div>
+</section>
 </main>
-
 <footer>
-  Santiago Villarreal &middot; DevOps / CloudOps / CloudSecOps Engineer &middot; <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" target="_blank" rel="noopener">LinkedIn</a>
+  Santiago Villarreal · DevOps / CloudOps / CloudSecOps Engineer · <a href="https://www.linkedin.com/in/santiago-villarreal-b337b736/" rel="noopener" target="_blank">LinkedIn</a>
 </footer>
-
 <script>
   var I18N = {
     es: {
@@ -1051,6 +1034,5 @@
     });
   });
 </script>
-
 </body>
 </html>
