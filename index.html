@@ -663,7 +663,6 @@
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes4">ElastiCache (Redis/Valkey) y OpenSearch</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes5">Costos de CloudWatch y CloudTrail, incluyendo métricas de uso</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes6">Cobertura de Reserved Instances / Savings Plans</span></div>
-          <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes6b">Cobertura de SageMaker Savings Plans / Redshift Reserved Nodes, si aplica</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes7">Revisión de patrones de data transfer</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes8">Informe con hallazgos priorizados por USD/mes estimado</span></div>
           <div class="ledger-item"><span class="mark">+</span> <span data-i18n="inc.yes9">Plan de acción concreto por hallazgo</span></div>
@@ -734,7 +733,7 @@
           <li><span class="mark">+</span> <span data-i18n="price.li3">Una ronda de preguntas por escrito sobre el informe, incluida</span></li>
         </ul>
         <div class="price-scope" data-i18n="price.scope">
-          Este precio aplica a 1 cuenta AWS (o hasta 3 cuentas linkeadas) con gasto de referencia de hasta USD 15.000/mes. Cuentas más grandes, o con arquitecturas muy distribuidas (múltiples clusters ECS, múltiples VPCs), se cotizan aparte, sin forzar el precio fijo.
+          Este precio aplica a 1 cuenta AWS, o a varias cuentas bajo AWS Organizations con billing consolidado, con gasto de referencia de hasta USD 15.000/mes. Si son cuentas independientes sin Organizations, cada cuenta adicional a la primera suma USD 250 al precio fijo. Cuentas más grandes, o con arquitecturas muy distribuidas (múltiples clusters ECS, múltiples VPCs), se cotizan aparte, sin forzar el precio fijo.
         </div>
         <a class="btn btn-primary book-link" href="https://calendar.app.google/SvMsLTXnQpgSC8mu9" target="_blank" rel="noopener" data-i18n="price.cta">Agendar la llamada inicial</a>
       </div>
@@ -767,7 +766,7 @@
             <span data-i18n="faq.q3">¿Qué pasa si mi cuenta es más grande o más compleja que el alcance estándar?</span>
             <span class="icon">+</span>
           </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">En la llamada inicial lo vemos. Si tu caso excede el alcance (más cuentas, gasto mensual mayor, arquitectura muy distribuida), te paso una cotización ajustada antes de arrancar. Nunca se fuerza el precio fijo sobre un caso que no entra.</div></div>
+          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">En la llamada inicial lo vemos. Si tenés varias cuentas (por ejemplo una por ambiente) bajo AWS Organizations con billing consolidado, entran en el precio estándar. Si son cuentas independientes sin Organizations, cada cuenta adicional a la primera suma USD 250. Si tu caso excede el alcance de otra forma (gasto mensual mayor, arquitectura muy distribuida), te paso una cotización ajustada antes de arrancar. Nunca se fuerza el precio fijo sobre un caso que no entra.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">
@@ -789,13 +788,6 @@
             <span class="icon">+</span>
           </button>
           <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">Porque prefiero entregar un informe bien hecho antes que apurar el análisis para cumplir un plazo demasiado ajustado. Comparado con auditorías de consultoras grandes, que suelen tardar entre 2 y 6 semanas, 3 días hábiles sigue siendo rápido.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span data-i18n="faq.q7">¿Y si mi cuenta también tiene un stack de BigData o Machine Learning (EMR, Redshift, SageMaker, Kinesis)?</span>
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a7">Reviso toda la infraestructura estándar de la cuenta (EC2, contenedores, bases de datos, redes, caching), que en la mayoría de los casos sigue siendo una parte grande del gasto total, incluso en cuentas con stack de datos. La optimización específica de EMR, Redshift, SageMaker o Kinesis queda fuera del alcance actual, prefiero no venderte algo que no puedo respaldar con experiencia real. Si hace falta, coordino con especialistas en esos servicios.</div></div>
         </div>
       </div>
     </div>
@@ -863,7 +855,6 @@
       "inc.yes4": "ElastiCache (Redis/Valkey) y OpenSearch",
       "inc.yes5": "Costos de CloudWatch y CloudTrail, incluyendo métricas de uso",
       "inc.yes6": "Cobertura de Reserved Instances / Savings Plans",
-      "inc.yes6b": "Cobertura de SageMaker Savings Plans / Redshift Reserved Nodes, si aplica",
       "inc.yes7": "Revisión de patrones de data transfer",
       "inc.yes8": "Informe con hallazgos priorizados por USD/mes estimado",
       "inc.yes9": "Plan de acción concreto por hallazgo",
@@ -892,7 +883,7 @@
       "price.li1": "Informe completo en hasta 3 días hábiles desde que confirmamos el acceso",
       "price.li2": "Llamada de 30 min antes de arrancar, para entender tu cuenta y confirmar que entra en el alcance",
       "price.li3": "Una ronda de preguntas por escrito sobre el informe, incluida",
-      "price.scope": "Este precio aplica a 1 cuenta AWS (o hasta 3 cuentas linkeadas) con gasto de referencia de hasta USD 15.000/mes. Cuentas más grandes, o con arquitecturas muy distribuidas (múltiples clusters ECS, múltiples VPCs), se cotizan aparte, sin forzar el precio fijo.",
+      "price.scope": "Este precio aplica a 1 cuenta AWS, o a varias cuentas bajo AWS Organizations con billing consolidado, con gasto de referencia de hasta USD 15.000/mes. Si son cuentas independientes sin Organizations, cada cuenta adicional a la primera suma USD 250 al precio fijo. Cuentas más grandes, o con arquitecturas muy distribuidas (múltiples clusters ECS, múltiples VPCs), se cotizan aparte, sin forzar el precio fijo.",
       "price.cta": "Agendar la llamada inicial",
       "faq.label": "Preguntas frecuentes",
       "faq.title": "Lo que probablemente estás pensando ahora.",
@@ -901,15 +892,13 @@
       "faq.q2": "¿Garantizás un porcentaje de ahorro?",
       "faq.a2": 'No. Te muestro hallazgos reales con impacto estimado en dólares por mes, calculado sobre tu cuenta puntual. No uso una cifra de marketing genérica tipo "ahorrá 30%" porque no la puedo respaldar sin haber visto tu caso.',
       "faq.q3": "¿Qué pasa si mi cuenta es más grande o más compleja que el alcance estándar?",
-      "faq.a3": "En la llamada inicial lo vemos. Si tu caso excede el alcance (más cuentas, gasto mensual mayor, arquitectura muy distribuida), te paso una cotización ajustada antes de arrancar. Nunca se fuerza el precio fijo sobre un caso que no entra.",
+      "faq.a3": "En la llamada inicial lo vemos. Si tenés varias cuentas (por ejemplo una por ambiente) bajo AWS Organizations con billing consolidado, entran en el precio estándar. Si son cuentas independientes sin Organizations, cada cuenta adicional a la primera suma USD 250. Si tu caso excede el alcance de otra forma (gasto mensual mayor, arquitectura muy distribuida), te paso una cotización ajustada antes de arrancar. Nunca se fuerza el precio fijo sobre un caso que no entra.",
       "faq.q4": "¿La auditoría incluye implementar los cambios?",
       "faq.a4": "No. Este servicio entrega el diagnóstico y el plan de acción. La ejecución de los cambios es una segunda etapa opcional, que se cotiza según el alcance de lo que haya que hacer.",
       "faq.q5": "¿Cómo revoco el acceso cuando termina la auditoría?",
       "faq.a5": "Eliminás el IAM role o le sacás el trust policy que lo conecta con mi cuenta. Te dejo esas instrucciones junto con el informe final, toma menos de un minuto.",
       "faq.q6": "¿Por qué hasta 3 días si esto se supone que es rápido?",
       "faq.a6": "Porque prefiero entregar un informe bien hecho antes que apurar el análisis para cumplir un plazo demasiado ajustado. Comparado con auditorías de consultoras grandes, que suelen tardar entre 2 y 6 semanas, 3 días hábiles sigue siendo rápido.",
-      "faq.q7": "¿Y si mi cuenta también tiene un stack de BigData o Machine Learning (EMR, Redshift, SageMaker, Kinesis)?",
-      "faq.a7": "Reviso toda la infraestructura estándar de la cuenta (EC2, contenedores, bases de datos, redes, caching), que en la mayoría de los casos sigue siendo una parte grande del gasto total, incluso en cuentas con stack de datos. Si usás SageMaker o Redshift, también reviso su cobertura de Savings Plans / Reserved Nodes, es un análisis de facturación puro, sin tocar nada de lo que corre. Lo que queda fuera es la optimización de workload en sí (EMR, Kinesis, MSK, Glue, Athena), donde el ahorro depende de decisiones de arquitectura que prefiero dejar en manos de especialistas en datos.",
       "final.title": "¿Tu cuenta AWS entra en el alcance? Escribime y lo vemos en 30 minutos.",
       "final.sub": "Sin compromiso. Si no es un buen fit, te lo digo en la primera llamada.",
       "book.url": "https://calendar.app.google/SvMsLTXnQpgSC8mu9",
@@ -960,7 +949,6 @@
       "inc.yes4": "ElastiCache (Redis/Valkey) and OpenSearch",
       "inc.yes5": "CloudWatch and CloudTrail costs, including usage metrics",
       "inc.yes6": "Reserved Instances / Savings Plans coverage",
-      "inc.yes6b": "SageMaker Savings Plans / Redshift Reserved Nodes coverage, if applicable",
       "inc.yes7": "Data transfer pattern review",
       "inc.yes8": "Report with findings prioritized by estimated USD/month",
       "inc.yes9": "Concrete action plan per finding",
@@ -989,7 +977,7 @@
       "price.li1": "Full report within 3 business days from confirmed access",
       "price.li2": "30 min call before we start, to understand your account and confirm it fits the scope",
       "price.li3": "One round of written follow-up questions on the report, included",
-      "price.scope": "This price applies to 1 AWS account (or up to 3 linked accounts) with a reference spend of up to USD 15,000/month. Larger accounts, or highly distributed architectures (multiple ECS clusters, multiple VPCs), are quoted separately, without forcing the fixed price.",
+      "price.scope": "This price applies to 1 AWS account, or to multiple accounts under AWS Organizations with consolidated billing, with a reference spend of up to USD 15,000/month. If accounts are independent without Organizations, each additional account beyond the first adds USD 250 to the fixed price. Larger accounts, or highly distributed architectures (multiple ECS clusters, multiple VPCs), are quoted separately, without forcing the fixed price.",
       "price.cta": "Book the intro call",
       "faq.label": "FAQ",
       "faq.title": "What you're probably thinking right now.",
@@ -998,19 +986,17 @@
       "faq.q2": "Do you guarantee a savings percentage?",
       "faq.a2": 'No. I show you real findings with estimated impact in dollars per month, calculated on your specific account. I don\'t use a generic marketing figure like "save 30%" because I can\'t back it up without having seen your case.',
       "faq.q3": "What if my account is bigger or more complex than the standard scope?",
-      "faq.a3": "We cover that on the intro call. If your case exceeds the scope (more accounts, higher monthly spend, highly distributed architecture), I give you an adjusted quote before starting. The fixed price never gets forced onto a case that doesn't fit.",
+      "faq.a3": "We cover that on the intro call. If you have multiple accounts (one per environment, for example) under AWS Organizations with consolidated billing, they fall under the standard price. If accounts are independent without Organizations, each additional account beyond the first adds USD 250. If your case exceeds the scope in another way (higher monthly spend, highly distributed architecture), I give you an adjusted quote before starting. The fixed price never gets forced onto a case that doesn't fit.",
       "faq.q4": "Does the audit include implementing the changes?",
       "faq.a4": "No. This service delivers the diagnosis and the action plan. Implementing the changes is an optional second stage, quoted based on the scope of what needs to be done.",
       "faq.q5": "How do I revoke access once the audit is done?",
       "faq.a5": "You delete the IAM role or remove the trust policy connecting it to my account. I include those instructions with the final report, it takes less than a minute.",
       "faq.q6": "Why up to 3 days if this is supposed to be fast?",
       "faq.a6": "Because I'd rather deliver a well-done report than rush the analysis to hit an overly tight deadline. Compared to audits from larger consulting firms, which usually take 2 to 6 weeks, 3 business days is still fast.",
-      "faq.q7": "What if my account also runs a BigData or Machine Learning stack (EMR, Redshift, SageMaker, Kinesis)?",
-      "faq.a7": "I review all the standard infrastructure in the account (EC2, containers, databases, networking, caching), which in most cases is still a large share of total spend, even in accounts with a data stack. If you use SageMaker or Redshift, I also review your Savings Plans / Reserved Nodes coverage there, it's a pure billing analysis, nothing touches what's actually running. What's out of scope is workload-level optimization itself (EMR, Kinesis, MSK, Glue, Athena), where the savings depend on architecture decisions I'd rather leave to data specialists.",
       "final.title": "Does your AWS account fit the scope? Message me and we'll cover it in 30 minutes.",
       "final.sub": "No commitment. If it's not a good fit, I'll tell you on the first call.",
       "book.url": "https://calendar.app.google/aeKnWb4SSMLwf5fF9",
-      "meta.title": "AWS Cost Audit in 3 Business Days | Santiago Villarreal",
+      "meta.title": "AWS Cost Audit in 5 Business Days | Santiago Villarreal",
       "meta.desc": "AWS cost audit with read-only access. Report with findings prioritized by potential savings and an action plan within 3 business days."
     }
   };
@@ -1046,7 +1032,7 @@
   (function initLang(){
     var saved = null;
     try{ saved = localStorage.getItem('siteLang'); }catch(e){}
-    var lang = saved || (navigator.language && navigator.language.toLowerCase().indexOf('en') === 0 ? 'en' : 'es');
+    var lang = saved || 'en';
     applyLang(lang);
   })();
 
